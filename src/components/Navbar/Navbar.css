@@ -3,6 +3,7 @@
     grid-template-columns: 1fr auto;
     grid-template-rows: 100px;
     align-content: center;
+    /* justify-content: space-between; */
     background: linear-gradient(to top, #0066cc 0%, #99ccff 100%);
     padding: 5px;
 }
@@ -10,46 +11,20 @@
 .logo-grid {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-auto-rows: 60px;
-    margin-left: 0.5rem;
-    align-content: center;
-    gap: 0.3rem;
+    justify-items: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    /* text-shadow: 3px 1px 3px #999; */
 }
 
-
 .logo-grid > .item-1 {
-    color: #fff;
-    text-shadow: 1px 1px 3px #000;
-    align-self: center;
-    font-size: 2.6rem;
+    font-size: 2.8rem;
 }
 
 .logo-grid > .item-2 {
-    text-shadow: 1px 1px 3px #fff;
+    text-decoration: underline;
 }
 
-.options-grid {
-    display: grid;
-    /* flex-wrap: wrap; */
-    /* grid-template-columns: 200px; */
-    /* grid-template-rows: ; */
-    align-content: center;
-    /* justify-content: flex-end; */
-}
 
-.options-grid > .item-1 {
-   font-size: 3.0rem;
-   color: #fff;
-   text-shadow: 1px 1px 3px #000;
-}
-
-.options-grid > .item-2 {
-    text-decoration: none;
-    justify-self: center;
-    /* align-self: baseline; */
-    margin-top: 0.5rem;
-    color: #000;
-    text-shadow: 1px 1px 3px #fff;
-    /* margin-left: 3rem; */
-}
 
