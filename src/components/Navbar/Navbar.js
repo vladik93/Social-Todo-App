@@ -1,5 +1,6 @@
 import './Navbar.css';
 import React from 'react';
+import DrawerComponent from '../Drawer/Drawer';
 
 // Material-Ui Components
 import AppBar from '@material-ui/core/AppBar';
@@ -32,11 +33,17 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
     const classes = useStyles();
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    }
+
     return (
         <div className={classes.root}>
             <AppBar position="fixed">
                 <Toolbar className={classes.toolbar}>
-                    <IconButton color="inherit" className={classes.menuButton}>
+                    <IconButton color="inherit" className={classes.menuButton} onClick={handleDrawerToggle}>
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
@@ -47,6 +54,7 @@ function Navbar() {
                     </IconButton>
                 </Toolbar>
             </AppBar>
+            <DrawerComponent mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} handleDrawerToggle={handleDrawerToggle} />
         </div>
     )
 }
