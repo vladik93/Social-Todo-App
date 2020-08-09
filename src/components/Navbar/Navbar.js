@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     toolbar: {
         background: 'linear-gradient(90deg, #006666 30%, #33334d 90%)',
         paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(1)
+        paddingBottom: theme.spacing(1),
     },
     menuButton: {
         marginRight: theme.spacing(0)
@@ -54,6 +54,7 @@ function Navbar() {
                     </IconButton>
                 </Toolbar>
             </AppBar>
+            <Toolbar />
             <DrawerComponent mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} handleDrawerToggle={handleDrawerToggle} />
         </div>
     )
