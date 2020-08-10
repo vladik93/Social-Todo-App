@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Login from './components/Login/Login';
+import Container from '@material-ui/core/Container';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -17,7 +18,9 @@ function App() {
     <div className="App">
       <Navbar />
       <div className={classes.offset} />
-      <Login />
+      <Container maxWidth="sm">
+        <Login />
+      </Container>
     </div>
   );
 }
