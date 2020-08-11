@@ -47,7 +47,7 @@ function Navbar() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        DO-TOO!
+                        SOCIAL TODO
                     </Typography>
                     <IconButton color="inherit">
                         <AccountCircle />
