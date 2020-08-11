@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 // Material-Ui Components
 import Drawer from '@material-ui/core/Drawer';
@@ -52,63 +53,86 @@ function DrawerComponent(props) {
             <Typography variant="h4" className={classes.title}>Panel</Typography>
             <Divider />
             <List>
-                {['Tasks', 'Finished Tasks', 'Starred Tasks'].map((text, index) => (
-                    <ListItem button>
-                        <ListItemIcon>{index === 2 ? <AssignmentIcon className={classes.favoredIcon} /> 
-                        : <AssignmentIcon className={classes.normalIcon} /> }</ListItemIcon>
-                        <ListItemText primary={text} color="primary" className={classes.listItemText}/>
-                    </ListItem>
+                {[
+                    {name: 'Tasks', link: 'tasks'}, 
+                    {name: 'Finished Tasks', link: 'finished_tasks'}, 
+                    {name: 'Starred Tasks', link: 'starred_tasks' }
+                ].map((item, index) => (
+                    <Link to={item.link}>
+                        <ListItem button>
+                            <ListItemIcon>{index === 2 ? <AssignmentIcon className={classes.favoredIcon} /> 
+                            : <AssignmentIcon className={classes.normalIcon} /> }</ListItemIcon>
+                            <ListItemText primary={item.name} color="primary" className={classes.listItemText}/>
+                        </ListItem>
+                    </Link>
                 ))}
             </List>
             <Divider />
             <List>
-                {['Following', 'Friends'].map((text, index) => (
+                {[
+                    {name: 'Following', link: 'following'}, 
+                    {name:'Friends', link: 'friends'}
+                ].map((item, index) => (
+                    <Link to={item.link}>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <GroupIcon className={classes.normalIcon} /> 
+                            </ListItemIcon>
+                            <ListItemText primary={item.name} color="primary" className={classes.listItemText} />
+                        </ListItem>
+                    </Link>
+                ))}
+                <Link to="/blacklist">
                     <ListItem button>
                         <ListItemIcon>
-                            <GroupIcon className={classes.normalIcon} /> 
+                            <GroupIcon style={{color: '#1a1a1a'}} />
                         </ListItemIcon>
-                        <ListItemText primary={text} color="primary" className={classes.listItemText} />
+                        <ListItemText primary="Blacklist" />
                     </ListItem>
-                ))}
-                <ListItem button>
-                    <ListItemIcon>
-                        <GroupIcon style={{color: '#1a1a1a'}} />
-                    </ListItemIcon>
-                    <ListItemText primary="Blacklist" />
-                </ListItem>
+                </Link>
             </List>
             <Divider />
             <List>
-                <ListItem button>
-                    <ListItemIcon>
-                        <PersonIcon className={classes.normalIcon} />
-                    </ListItemIcon>
-                    <ListItemText primary="Profile" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <MessageIcon style={{color: '#b3b3b3', fontSize: 30}} />
-                    </ListItemIcon>
-                    <ListItemText primary="Messages" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <SettingsIcon className={classes.normalIcon}/>
-                    </ListItemIcon>
-                    <ListItemText primary="Messages" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <HelpOutlineIcon className={classes.normalIcon && classes.icon}/>
-                    </ListItemIcon>
-                    <ListItemText primary="About" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <MeetingRoomIcon style={{color: '#b3b3b3', fontSize: 30}}/>
-                    </ListItemIcon>
-                    <ListItemText primary="Logout" />
-                </ListItem>
+                <Link to="/profile">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <PersonIcon className={classes.normalIcon} />
+                        </ListItemIcon>
+                        <ListItemText primary="Profile" />
+                    </ListItem>
+                </Link>
+                <Link to="/messages">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <MessageIcon style={{color: '#b3b3b3', fontSize: 30}} />
+                        </ListItemIcon>
+                        <ListItemText primary="Messages" />
+                    </ListItem>
+                </Link>
+                <Link to="/settings">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <SettingsIcon className={classes.normalIcon}/>
+                        </ListItemIcon>
+                        <ListItemText primary="Settings" />
+                    </ListItem>
+                </Link>
+                <Link to="/about">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <HelpOutlineIcon className={classes.normalIcon && classes.icon}/>
+                        </ListItemIcon>
+                        <ListItemText primary="About" />
+                    </ListItem>
+                </Link>
+                <Link to="/logout">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <MeetingRoomIcon style={{color: '#b3b3b3', fontSize: 30}}/>
+                        </ListItemIcon>
+                        <ListItemText primary="Logout" />
+                    </ListItem>
+                </Link>
 
             </List>
 
@@ -118,19 +142,21 @@ function DrawerComponent(props) {
 
 
     return (
-        <div className={classes.drawer}>
-           <Hidden smUp>
-                <Drawer variant="temporary" 
-                open={props.mobileOpen} 
-                ModalProps={{keepMounted: true}} 
-                onClose={props.handleDrawerToggle}
-                container={container}
-                classes={{paper: classes.drawerPaper}}
-                >
-                  {drawer}
-                </Drawer>
-           </Hidden>
-        </div>
+        <Router>
+            <div className={classes.drawer}>
+                <Hidden smUp>
+                        <Drawer variant="temporary" 
+                        open={props.mobileOpen} 
+                        ModalProps={{keepMounted: true}} 
+                        onClose={props.handleDrawerToggle}
+                        container={container}
+                        classes={{paper: classes.drawerPaper}}
+                        >
+                        {drawer}
+                        </Drawer>
+                </Hidden>
+            </div>
+        </Router>
     )
 }
 
