@@ -4,8 +4,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
 const useStyles = makeStyles((theme) => ({
+    appbar: {
+        // minHeight: '100vh'
+    },
     toolbar: {
         background: 'linear-gradient(90deg, #006666 30%, #33334d 90%)',
+        // height: '100vh'
     }
 }))
 
@@ -13,7 +17,8 @@ function Footer() {
     const classes = useStyles();
     return (
         <div>
-            <AppBar position="sticky" >
+            <Toolbar />
+            <AppBar position="static" className={classes.appbar}>
                 <Toolbar className={classes.toolbar}>
 
                 </Toolbar>

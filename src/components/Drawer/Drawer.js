@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 
 // Material-Ui Components
 import Drawer from '@material-ui/core/Drawer';
@@ -142,7 +142,7 @@ function DrawerComponent(props) {
 
 
     return (
-        <Router>
+        // <Router>
             <div className={classes.drawer}>
                 <Hidden smUp>
                         <Drawer variant="temporary" 
@@ -156,7 +156,7 @@ function DrawerComponent(props) {
                         </Drawer>
                 </Hidden>
             </div>
-        </Router>
+        // </Router>
     )
 }
 

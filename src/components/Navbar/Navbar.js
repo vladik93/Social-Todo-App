@@ -1,5 +1,6 @@
 import './Navbar.css';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { withRouter } from 'react-router-dom';
 import DrawerComponent from '../Drawer/Drawer';
 
 // Material-Ui Components
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Navbar() {
+function Navbar({history}) {
     const classes = useStyles();
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -39,9 +40,20 @@ function Navbar() {
         setMobileOpen(!mobileOpen);
     }
 
+    useEffect(() => history.listen(() => {
+        setMobileOpen(false);
+    }), [])
+
+    // ALSO WORKS
+    // ===========================================
+    // useEffect(() => history.listen(() => {
+    //     setMobileOpen(); 
+    // }), [])
+    // ==========================================
+
     return (
         <div className={classes.root}>
-            <AppBar position="fixed">
+            <AppBar position="static">
                 <Toolbar className={classes.toolbar}>
                     <IconButton color="inherit" className={classes.menuButton} onClick={handleDrawerToggle}>
                         <MenuIcon />
@@ -60,4 +72,4 @@ function Navbar() {
     )
 }
 
-export default Navbar;
+export default withRouter(Navbar);
