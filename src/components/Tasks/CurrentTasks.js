@@ -11,6 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Collapse from '@material-ui/core/Collapse';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -25,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
 
 function CurrentTasks() {
     const classes = useStyles();
+    const [ expanded, setExpanded ] = React.useState(false);
+
+    const handleExpandClick = () => {
+        setExpanded(!expanded); // !boolean inverts the boolean (i.e. true => false, false => true)
+    }
 
     const tasks = [
         {id: 1, title: 'Get Super Fit', subtasks: ['Do cardio', 'Eat right', 'Don\'t succumb to temptation'], date: '12/05/20'},
@@ -46,7 +52,7 @@ function CurrentTasks() {
                             
                             </CardHeader>
                             <CardActions className={classes.cardActions}>
-                                <IconButton>
+                                <IconButton onClick={handleExpandClick}>
                                     <ExpandMoreIcon />
                                 </IconButton>
                                     <AvatarGroup max={3} spacing="small">
@@ -57,6 +63,12 @@ function CurrentTasks() {
                                         <Avatar src="/images/profiles/profile1.jpg" />
                                     </AvatarGroup>
                             </CardActions>
+                            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                <CardContent>
+                                    <Typography paragraph>Tasks:</Typography>
+
+                                </CardContent>
+                            </Collapse>
                         </Card>
                     </Grid>
                 ))}
