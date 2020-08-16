@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 function CurrentTasks() {
     const classes = useStyles();
     const [ expanded, setExpanded ] = React.useState(false);
+    const [ items, setItems ] = React.useState([]);
 
     
     const tasks = [
@@ -78,11 +79,15 @@ function CurrentTasks() {
         })
     }
 
+    useEffect(() => {
+        setItems(tasks);
+    }, []);
+
 
     return (
         <div className={classes.root}>
             <Grid container>
-                {tasks.map((task) => (
+                {items.map((task) => (
                     <Grid item xs={12} sm={6}>
                         <Card variant="elevation" className={classes.card}>
                             <CardHeader avatar={
