@@ -11,7 +11,16 @@ import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Collapse from '@material-ui/core/Collapse';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import AccordionActions from '@material-ui/core/AccordionActions';
+import DoneIcon from '@material-ui/icons/Done';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -20,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
     cardActions: {
         // flexGrow: 2,
         justifyContent: 'space-between'
+    },
+    doneIcon: {
+        fontSize: '2rem'
     }
 
 }));
@@ -27,31 +39,50 @@ const useStyles = makeStyles((theme) => ({
 function CurrentTasks() {
     const classes = useStyles();
     const [ expanded, setExpanded ] = React.useState(false);
-    const [ id, setId] = React.useState(null);
 
-    // const handleExpandClick = () => {
-    //     setExpanded(!expanded); 
-    //     !boolean inverts the boolean (i.e. true => false, false => true)
-    // }
-
+    
     const tasks = [
-        {id: 1, title: 'Get Super Fit', subtasks: ['Do cardio', 'Eat right', 'Don\'t succumb to temptation'], date: '12/05/20'},
-        {id: 2, title: 'Go On Vacation', subtasks: ['Wait til COVID-19 stops', 'Plan out whole trip',  'Post useless shit on social media'], date: '21/06/20'},
-        {id: 3, title: 'Visit Dying Parents', subtasks: ['Visit parents', 'Deal with horrifying grief', 'Don\'t visit for at least 5 years'], date: '10/06/20'}
+        {id: 1, title: 'Get Super Fit', subtasks: 
+            [
+                {id: 1, content: 'Do cardio', complete: false}, 
+                {id: 2, content: 'Eat right', complete: false}, 
+                {id: 3, content: 'Don\'t succumb to temptation', complete: false}
+            ], 
+        date: '12/05/20', complete: false},
+        {id: 2, title: 'Go On Vacation', subtasks: 
+            [
+                {id: 1, content: 'Wait til COVID-19 stops', complete: false}, 
+                {id: 2, content: 'Plan out whole trip', complete: false}, 
+                {id: 3, content: 'Post useless shit on social media', complete: false}
+            ],
+        date: '21/06/20', complete: false},
+        {id: 3, title: 'Visit Dying Parents', subtasks: 
+            [
+             {id: 1, content: 'Visit parents', complete: false}, 
+             {id: 2, content: 'Deal with horrifying grief', complete: false},
+             {id: 3, content: 'Don\'t visit for at least 5 years', complete: false}
+            ],
+        date: '10/06/20', complete: false}
     ];
+    
+    
+    const handleExpandClick = () => {
+        // setExpanded(!expanded); // !boolean inverts the boolean (i.e. true => false, false => true)
+    }
 
-    useEffect(() => {
-        for(let i = 0; i < tasks.length; i++) {
-            if(tasks[i].id === id) {
-                setExpanded(!expanded);
+    const onSubtaskClick = (task, subtask) => {
+        tasks.filter((value) => {
+            if(value.id !== task) {
+                return value;
             }
-        }
-    }, [tasks, id])
+        })
+    }
+
 
     return (
         <div className={classes.root}>
             <Grid container>
-                {tasks.map((task, index) => (
+                {tasks.map((task) => (
                     <Grid item xs={12} sm={6}>
                         <Card variant="elevation" className={classes.card}>
                             <CardHeader avatar={
@@ -61,10 +92,14 @@ function CurrentTasks() {
                             subheader={task.date}>
                             
                             </CardHeader>
-                            <CardActions className={classes.cardActions}>
-                                <IconButton onClick={() => setId(task.id)}>
+                            {/* <CardActions className={classes.cardActions}> */}
+                                {/* <IconButton onClick={handleExpandClick}>
                                     <ExpandMoreIcon />
-                                </IconButton>
+                                </IconButton> */}
+                                    
+                            {/* </CardActions> */}
+                            <Accordion>
+                                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                     <AvatarGroup max={3} spacing="small">
                                         <Avatar src="/images/profiles/profile1.jpg" />
                                         <Avatar src="/images/profiles/profile1.jpg" />
@@ -72,32 +107,32 @@ function CurrentTasks() {
                                         <Avatar src="/images/profiles/profile1.jpg" />
                                         <Avatar src="/images/profiles/profile1.jpg" />
                                     </AvatarGroup>
-                            </CardActions>
-                            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <List>
+                                       {task.subtasks.map((subtask) => (
+                                           <ListItem button onClick={onSubtaskClick.bind(this, task.id, subtask.id)}>
+                                                <ListItemIcon>
+                                                    <DoneIcon className={classes.doneIcon} />
+                                                </ListItemIcon>
+                                                <ListItemText primary={subtask.content}/>
+                                           </ListItem>
+                                       ))}
+                                    </List>
+                                </AccordionDetails>
+                                <AccordionActions>
+                                    <Button size="small">Delete</Button>
+                                </AccordionActions>
+                            </Accordion>
+                            {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
                                 <CardContent>
                                     <Typography paragraph>Tasks:</Typography>
 
                                 </CardContent>
-                            </Collapse>
+                            </Collapse> */}
                         </Card>
                     </Grid>
                 ))}
-
-
-                {/* <Grid item xs={12}>
-                    <Card variant="outlined">
-                        <CardHeader 
-                        avatar={
-                            <Avatar>
-                                Cu
-                            </Avatar>  
-                        }>
-                        </CardHeader>
-                        <CardContent>
-                            Card #1
-                        </CardContent>
-                    </Card>
-                </Grid> */}
             </Grid>
         </div>
     )
