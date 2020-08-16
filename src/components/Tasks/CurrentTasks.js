@@ -72,11 +72,19 @@ function CurrentTasks() {
     }
 
     const onSubtaskClick = (task, subtask) => {
-        tasks.filter((value) => {
-            if(value.id !== task) {
-                return value;
-            }
-        })
+        if(items) {
+            items.map((item) => {
+                if(item.id === task) {
+                   item.subtasks.map((sub) => {
+                       if(sub.id !== subtask) {
+                           setItems(items[item.id].subtasks.push(sub));
+                       }
+                   })
+                }
+                
+            })
+            
+        }
     }
 
     useEffect(() => {
