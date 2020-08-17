@@ -26,10 +26,11 @@ const useStyles = makeStyles((theme) => ({
     hr: {
         marginTop: theme.spacing(3)
     },
+    
     titleContainer: {
         display: 'flex',
         textAlign: 'center',
-        backgroundColor: '#f2f2f2',
+        backgroundColor: '#878786',
         color: '#fff',
         // boxShadow: theme.shadows[19],
         textShadow: '1px 1px 1px #000',

@@ -1,4 +1,5 @@
 import React from 'react';
+import './Drawer.css'
 import { makeStyles } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 
@@ -39,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         marginLeft: theme.spacing(1)
-    }
+    },
+    
 }));
 
 function DrawerComponent(props) {
