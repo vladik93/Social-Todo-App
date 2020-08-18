@@ -9,6 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
@@ -58,9 +59,14 @@ function Navbar({history}) {
                     <IconButton color="inherit" className={classes.menuButton} onClick={handleDrawerToggle}>
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" className={classes.title}>
+
+                    <Typography style={{ cursor: 'pointer' }} onClick={() => {history.push('/');}} variant="h6" className={classes.title}>
+                        
                         SOCIAL TODO
+                       
                     </Typography>
+                    
+                    
                     <IconButton color="inherit">
                         <AccountCircle />
                     </IconButton>

@@ -1,7 +1,8 @@
+import Task from "./scripts/Task.js";
 import './App.css';
+
 import React from 'react';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
-
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
@@ -10,6 +11,9 @@ import CurrentTasks from './components/Tasks/CurrentTasks';
 import Container from '@material-ui/core/Container';
 
 import { makeStyles } from '@material-ui/core/styles';
+
+
+let task = new Task("Fuckoff", "You are shit");
 
 const useStyles = makeStyles((theme) => ({
     offset: theme.mixins.toolbar,
