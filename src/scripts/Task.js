@@ -35,7 +35,7 @@ class TimedTask extends Task {
     }
 
     percentageFormatted() {   
-        return ((percentageDone * 100).toFixed(2) + "%");   //Returns percentage for retards aka 0.56123 -> 56.12%
+        return ((this.percentageDone() * 100).toFixed(2) + "%");   //Returns percentage for retards aka 0.56123 -> 56.12%
     }
     
 
@@ -51,8 +51,8 @@ class CountTask extends Task {
     }
 
     addItems(count) {   //Adds x times of said thing, returns true if the thing is done 
-        did += count; 
-        if (did >= count)
+        this.did += count; 
+        if (this.did >= count)
             return true;
         return false;
     }
