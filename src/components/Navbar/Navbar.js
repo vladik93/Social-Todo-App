@@ -67,7 +67,7 @@ function Navbar({history}) {
                     </Typography>
                     
                     
-                    <IconButton color="inherit">
+                    <IconButton onClick={() => { history.push('/profile'); }} color="inherit">
                         <AccountCircle />
                     </IconButton>
                 </Toolbar>
