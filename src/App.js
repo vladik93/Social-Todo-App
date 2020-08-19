@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
 import CurrentTasks from './components/Tasks/CurrentTasks';
+import AddTask from './components/Tasks/AddTask';
 
 import Container from '@material-ui/core/Container';
 
@@ -38,6 +39,9 @@ function App() {
             </Route>
             <Route exact path="/tasks">
               <CurrentTasks />
+            </Route>
+            <Route exact path="/add_task">
+              <AddTask />
             </Route>
             <Route exact path="/logout">
               <Login />

@@ -19,6 +19,7 @@ import MessageIcon from '@material-ui/icons/Message';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import PostAddIcon from '@material-ui/icons/PostAdd';
 
 const drawerWidth = 200;
 
@@ -58,7 +59,7 @@ function DrawerComponent(props) {
                 {[
                     {name: 'Tasks', link: 'tasks'}, 
                     {name: 'Finished Tasks', link: 'finished_tasks'}, 
-                    {name: 'Starred Tasks', link: 'starred_tasks' }
+                    {name: 'Starred Tasks', link: 'starred_tasks' },
                 ].map((item, index) => (
                     <Link to={item.link}>
                         <ListItem button>
@@ -68,6 +69,14 @@ function DrawerComponent(props) {
                         </ListItem>
                     </Link>
                 ))}
+                    <Link to="/add_task">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PostAddIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Add Task" color="primary" className={classes.listItemText} />
+                        </ListItem>
+                    </Link>
             </List>
             <Divider />
             <List>
