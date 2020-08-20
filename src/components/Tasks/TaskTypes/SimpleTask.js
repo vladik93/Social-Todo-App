@@ -6,7 +6,7 @@ function SimpleTask() {
     return (
         <React.Fragment>
             <Grid item xs={12}>
-                <TextField variant="outlined" margin="normal" placeholder="Task..." multiline rows="3" fullWidth />
+                <TextField variant="outlined" margin="normal" placeholder="Task..." name="task_content" multiline rows="3" namez fullWidth />
             </Grid>
         </React.Fragment>
     )

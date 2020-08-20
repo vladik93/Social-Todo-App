@@ -20,14 +20,20 @@ const useStyles = makeStyles((theme) => ({
 function AddTask() {
     const classes = useStyles();
     const [ taskType, setTaskType ] = useState(1);
+
+    const onTaskSubmit = (e) => {
+        e.preventDefault();
+        console.log(e);
+    }
+
     return (
         <div className={classes.root}>
-            <form noValidate>
+            <form noValidate onSubmit={onTaskSubmit}>
                 <Grid container>
                     <Grid item xs={12}>
                         <FormControl fullWidth>
                             <InputLabel>Task Type</InputLabel>
-                            <Select native variant="outlined" value={taskType} onChange={(e) => setTaskType(e.target.value)}>
+                            <Select native variant="outlined" value={taskType} name="task_type" onChange={(e) => setTaskType(e.target.value)}>
                                 <option value={1}>Task</option>
                                 <option value={2}>Task w. Counter</option>
                                 <option value={3}>Task w. Deadline</option>
@@ -42,7 +48,7 @@ function AddTask() {
                         taskType == 4 ? <MultistepTask /> : null
                     }
                     <Grid item xs={12}>
-                        <Button variant="contained">ADD TASK</Button>
+                        <Button variant="contained" type="submit">ADD TASK</Button>
                     </Grid>
                 </Grid>
             </form>
