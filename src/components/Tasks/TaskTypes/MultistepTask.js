@@ -7,7 +7,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 function MultistepTask() {
     const [ taskQuantity, setTaskQuantity] = useState(1);
     const [ taskTitle, setTaskTitle] = useState(null);
-    const [ multistepTask, setMultistepTask ] = useState(['hello']);
+    const [ multistepTask, setMultistepTask ] = useState(null);
     
     let tasks = [];
 
@@ -20,8 +20,8 @@ function MultistepTask() {
                     margin="normal" 
                     placeholder="Task..." 
                     fullWidth 
-                    value={multistepTask} 
-                    onChange={(e) => setMultistepTask([...multistepTask, e.target.value])}/>
+                    value={multistepTask[i]} 
+                    onChange={(e) => setMultistepTask(multistepTask)}/>
                 </Grid>
             )
         }
