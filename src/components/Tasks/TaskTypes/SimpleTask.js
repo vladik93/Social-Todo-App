@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function SimpleTask() {
+function SimpleTask(props) {
+    const [ simpleTask, setSimpleTask ] = useState(null);
+
+    props.onTask(simpleTask);
     return (
         <React.Fragment>
             <Grid item xs={12}>
-                <TextField variant="outlined" margin="normal" placeholder="Task..." name="task_content" multiline rows="3" namez fullWidth />
+                <TextField variant="outlined"
+                 margin="normal" 
+                 placeholder="Task..." 
+                 multiline rows="3" 
+                 fullWidth 
+                 value={simpleTask}
+                 onChange={(e) => setSimpleTask(e.target.value)}
+                 required/>
             </Grid>
         </React.Fragment>
     )

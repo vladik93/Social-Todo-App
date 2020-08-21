@@ -6,26 +6,42 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 function MultistepTask() {
     const [ taskQuantity, setTaskQuantity] = useState(1);
+    const [ taskTitle, setTaskTitle] = useState(null);
+    const [ multistepTask, setMultistepTask ] = useState(['hello']);
+    
     let tasks = [];
 
     const setMultitaskPanels = () => {
-     
         for(let i = 0; i < taskQuantity; i++) {
             tasks.push(
                 <Grid item xs={12}>
-                    <TextField variant="outlined" margin="normal" placeholder="Task..." fullWidth />
+                    <TextField 
+                    variant="outlined" 
+                    margin="normal" 
+                    placeholder="Task..." 
+                    fullWidth 
+                    value={multistepTask} 
+                    onChange={(e) => setMultistepTask([...multistepTask, e.target.value])}/>
                 </Grid>
             )
         }
         return tasks;
     }
 
-
+    console.log(multistepTask);
 
     return (
         <React.Fragment>
             <Grid item xs={12}>
-                <TextField variant="outlined" margin="normal" placeholder="Title..." multiline rows="3" fullWidth />
+                <TextField 
+                variant="outlined" 
+                margin="normal" 
+                placeholder="Title..." 
+                multiline rows="3" 
+                fullWidth
+                value={taskTitle}
+                onChange={(e) => setTaskTitle(e.target.value)} 
+                />
             </Grid>
             {setMultitaskPanels()}
             <IconButton onClick={() => setTaskQuantity(taskQuantity + 1)}>

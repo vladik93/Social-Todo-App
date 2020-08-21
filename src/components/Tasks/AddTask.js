@@ -21,14 +21,25 @@ function AddTask() {
     const classes = useStyles();
     const [ taskType, setTaskType ] = useState(1);
 
-    const onTaskSubmit = (e) => {
-        e.preventDefault();
-        console.log(e);
+    const onTask = (data) => {
+        console.log(data);
+    }
+
+    const onCounterTask = (task, counter) => {
+        console.log(task, counter);
+    }
+
+    const onDeadlineTask = (task, date, time) => {
+        console.log(task, date, time);
+    }
+
+    const onMultistepTask = (title, task) => {
+        console.log(title, task);
     }
 
     return (
         <div className={classes.root}>
-            <form noValidate onSubmit={onTaskSubmit}>
+            <form noValidate>
                 <Grid container>
                     <Grid item xs={12}>
                         <FormControl fullWidth>
@@ -42,10 +53,10 @@ function AddTask() {
                         </FormControl>
                     </Grid>
                     {
-                        taskType == 1 ? <SimpleTask /> : 
-                        taskType == 2 ? <CounterTask /> : 
-                        taskType == 3 ? <DeadlineTask /> :
-                        taskType == 4 ? <MultistepTask /> : null
+                        taskType == 1 ? <SimpleTask onTask={onTask} /> : 
+                        taskType == 2 ? <CounterTask onCounterTask={onCounterTask} /> : 
+                        taskType == 3 ? <DeadlineTask onDeadlineTask={onDeadlineTask} /> :
+                        taskType == 4 ? <MultistepTask onMultistepTask={onMultistepTask} /> : null
                     }
                     <Grid item xs={12}>
                         <Button variant="contained" type="submit">ADD TASK</Button>
