@@ -7,9 +7,13 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 function MultistepTask() {
     const [ taskQuantity, setTaskQuantity] = useState(1);
     const [ taskTitle, setTaskTitle] = useState(null);
-    const [ multistepTask, setMultistepTask ] = useState(null);
+    const [ multistepTask, setMultistepTask ] = useState([]);
     
     let tasks = [];
+
+    const onTaskFieldChange = (index) => (event) => {
+       setMultistepTask({...multistepTask, [event.target.name]: event.target.value});
+    }
 
     const setMultitaskPanels = () => {
         for(let i = 0; i < taskQuantity; i++) {
@@ -19,9 +23,9 @@ function MultistepTask() {
                     variant="outlined" 
                     margin="normal" 
                     placeholder="Task..." 
-                    fullWidth 
-                    value={multistepTask[i]} 
-                    onChange={(e) => setMultistepTask(multistepTask)}/>
+                    name={`task${i}`}
+                    fullWidth  
+                    onChange={onTaskFieldChange(i)}/>
                 </Grid>
             )
         }
