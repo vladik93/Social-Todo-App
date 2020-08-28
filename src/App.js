@@ -1,7 +1,7 @@
 import Task from "./scripts/Task.js";
 import './App.css';
 
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -14,7 +14,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-let task = new Task("Fuckoff", "You are shit");
+// let task = new Task("Fuckoff", "You are shit");
 
 const useStyles = makeStyles((theme) => ({
     offset: theme.mixins.toolbar,
@@ -26,7 +26,22 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
+
+  const initTasks = [
+    {id: 1, title: 'Get Super Fit', subtasks: 
+        [
+            {id: 1, content: 'Do cardio', complete: false}, 
+            {id: 2, content: 'Eat right', complete: false}, 
+            {id: 3, content: 'Don\'t succumb to temptation', complete: false}
+        ], 
+    date: '12/05/20', complete: false}, 
+];
+  const [tasks, setTask ] = useState(initTasks);
   
+  const taskSubmit = (task) => {
+    console.log(task);
+  }
+
   return (
     <Router>
       <div className="App">
@@ -38,10 +53,10 @@ function App() {
               <Login />
             </Route>
             <Route exact path="/tasks">
-              <CurrentTasks />
+              <CurrentTasks tasks={tasks} />
             </Route>
             <Route exact path="/add_task">
-              <AddTask />
+              <AddTask taskSubmit={taskSubmit} />
             </Route>
             <Route exact path="/logout">
               <Login />

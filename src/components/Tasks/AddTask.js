@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
-function AddTask() {
+function AddTask(props) {
     const classes = useStyles();
     const [ taskType, setTaskType ] = useState(1);
 

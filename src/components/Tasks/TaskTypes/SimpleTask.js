@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 function SimpleTask(props) {
     const [ simpleTask, setSimpleTask ] = useState(null);
 
-    props.onTask(simpleTask);
     return (
         <React.Fragment>
             <Grid item xs={12}>

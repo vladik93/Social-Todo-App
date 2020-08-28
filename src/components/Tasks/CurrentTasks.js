@@ -36,53 +36,20 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function CurrentTasks() {
+function CurrentTasks(props) {
     const classes = useStyles();
     const [ expanded, setExpanded ] = React.useState(false);
-
-    
-    const tasks = [
-        {id: 1, title: 'Get Super Fit', subtasks: 
-            [
-                {id: 1, content: 'Do cardio', complete: false}, 
-                {id: 2, content: 'Eat right', complete: false}, 
-                {id: 3, content: 'Don\'t succumb to temptation', complete: false}
-            ], 
-        date: '12/05/20', complete: false},
-        {id: 2, title: 'Go On Vacation', subtasks: 
-            [
-                {id: 1, content: 'Wait til COVID-19 stops', complete: false}, 
-                {id: 2, content: 'Plan out whole trip', complete: false}, 
-                {id: 3, content: 'Post useless shit on social media', complete: false}
-            ],
-        date: '21/06/20', complete: false},
-        {id: 3, title: 'Visit Dying Parents', subtasks: 
-            [
-             {id: 1, content: 'Visit parents', complete: false}, 
-             {id: 2, content: 'Deal with horrifying grief', complete: false},
-             {id: 3, content: 'Don\'t visit for at least 5 years', complete: false}
-            ],
-        date: '10/06/20', complete: false}
-    ];
     
     
     const handleExpandClick = () => {
         // setExpanded(!expanded); // !boolean inverts the boolean (i.e. true => false, false => true)
     }
 
-    const onSubtaskClick = (task, subtask) => {
-        tasks.filter((value) => {
-            if(value.id !== task) {
-                return value;
-            }
-        })
-    }
-
 
     return (
         <div className={classes.root}>
             <Grid container>
-                {tasks.map((task) => (
+                {props.tasks.map((task) => (
                     <Grid item xs={12} sm={6}>
                         <Card variant="elevation" className={classes.card}>
                             <CardHeader avatar={
@@ -111,7 +78,7 @@ function CurrentTasks() {
                                 <AccordionDetails>
                                     <List>
                                        {task.subtasks.map((subtask) => (
-                                           <ListItem button onClick={onSubtaskClick.bind(this, task.id, subtask.id)}>
+                                           <ListItem button>
                                                 <ListItemIcon>
                                                     <DoneIcon className={classes.doneIcon} />
                                                 </ListItemIcon>

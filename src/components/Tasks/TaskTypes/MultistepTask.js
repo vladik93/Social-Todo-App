@@ -4,9 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
-function MultistepTask() {
+function MultistepTask(props) {
     const [ taskQuantity, setTaskQuantity] = useState(1);
-    const [ taskTitle, setTaskTitle] = useState(null);
+    const [ taskTitle, setTaskTitle] = useState('');
     const [ multistepTask, setMultistepTask ] = useState([]);
     
     let tasks = [];
@@ -32,7 +32,6 @@ function MultistepTask() {
         return tasks;
     }
 
-    console.log(multistepTask);
 
     return (
         <React.Fragment>
