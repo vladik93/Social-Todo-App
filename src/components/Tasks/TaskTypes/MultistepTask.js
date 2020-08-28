@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import Button from '@material-ui/core/Button';
 
 function MultistepTask(props) {
     const [ taskQuantity, setTaskQuantity] = useState(1);
@@ -34,28 +35,29 @@ function MultistepTask(props) {
 
 
     return (
-        <React.Fragment>
-            <Grid item xs={12}>
-                <TextField 
-                variant="outlined" 
-                margin="normal" 
-                placeholder="Title..." 
-                multiline rows="3" 
-                fullWidth
-                value={taskTitle}
-                onChange={(e) => setTaskTitle(e.target.value)} 
-                />
+        <form>
+            <Grid container>
+                <Grid item xs={12}>
+                    <TextField 
+                    variant="outlined" 
+                    margin="normal" 
+                    placeholder="Title..." 
+                    multiline rows="3" 
+                    fullWidth
+                    value={taskTitle}
+                    onChange={(e) => setTaskTitle(e.target.value)} 
+                    />
+                </Grid>
+                {setMultitaskPanels()}
+                <IconButton onClick={() => setTaskQuantity(taskQuantity + 1)}>
+                    <AddCircleOutlineIcon />
+                </IconButton>
+                <Grid item xs={12}>
+                    <Button color="default" variant="contained">Submit</Button>
+                </Grid>
             </Grid>
-            {setMultitaskPanels()}
-            <IconButton onClick={() => setTaskQuantity(taskQuantity + 1)}>
-                <AddCircleOutlineIcon />
-            </IconButton>
-            
-            {/* <IconButton onClick={() => taskQuantity < 3 ? setTaskQuantity(taskQuantity + 1) : setTaskQuantity(taskQuantity)}>
-                <AddCircleOutlineIcon />
-            </IconButton>
-             */}
-        </React.Fragment>
+        </form>
+        
     )
 }
 

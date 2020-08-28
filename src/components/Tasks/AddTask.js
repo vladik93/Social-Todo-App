@@ -21,6 +21,8 @@ function AddTask(props) {
     const classes = useStyles();
     const [ taskType, setTaskType ] = useState(1);
 
+
+
     const onTask = (data) => {
         console.log(data);
     }
@@ -39,7 +41,6 @@ function AddTask(props) {
 
     return (
         <div className={classes.root}>
-            <form noValidate>
                 <Grid container>
                     <Grid item xs={12}>
                         <FormControl fullWidth>
@@ -52,18 +53,14 @@ function AddTask(props) {
                             </Select>
                         </FormControl>
                     </Grid>
-                    {
-                        taskType == 1 ? <SimpleTask onTask={onTask} /> : 
-                        taskType == 2 ? <CounterTask onCounterTask={onCounterTask} /> : 
-                        taskType == 3 ? <DeadlineTask onDeadlineTask={onDeadlineTask} /> :
-                        taskType == 4 ? <MultistepTask onMultistepTask={onMultistepTask} /> : null
-                    }
-                    <Grid item xs={12}>
-                        <Button variant="contained" type="submit">ADD TASK</Button>
-                    </Grid>
                 </Grid>
-            </form>
-        </div>
+                {
+                    taskType == 1 ? <SimpleTask /> : 
+                    taskType == 2 ? <CounterTask /> : 
+                    taskType == 3 ? <DeadlineTask /> :
+                    taskType == 4 ? <MultistepTask /> : null
+                }
+        </div> 
     )
 }
 

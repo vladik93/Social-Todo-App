@@ -8,32 +8,36 @@ function CounterTask(props) {
     const [ counterTask, setCounterTask ] = useState(null);
     const [ taskCounter, setTaskCounter ] = useState(1);
 
-    props.onCounterTask(counterTask, taskCounter);
     return (
-        <React.Fragment>
-            <Grid item xs={12}>
-                <TextField 
-                type="text" 
-                variant="outlined" 
-                margin="normal" placeholder="Task..." 
-                multiline rows="3" 
-                fullWidth 
-                value={counterTask} 
-                onChange={(e) => setCounterTask(e.target.value)} 
-                required/>
+        <form>
+            <Grid container>
+                <Grid item xs={12}>
+                    <TextField 
+                    type="text" 
+                    variant="outlined" 
+                    margin="normal" placeholder="Task..." 
+                    multiline rows="3" 
+                    fullWidth 
+                    value={counterTask} 
+                    onChange={(e) => setCounterTask(e.target.value)} 
+                    required/>
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField 
+                    type="number" 
+                    variant="outlined" 
+                    margin="normal" placeholder="Quantity..." 
+                    inputProps={{ min: 1, max: 100}} 
+                    fullWidth 
+                    value={taskCounter}
+                    onChange={(e) => setTaskCounter(e.target.value)} 
+                    required/>
+                </Grid>
+                <Grid item xs={12}>
+                    <Button color="default" variant="contained">Submit</Button>
+                </Grid>
             </Grid>
-            <Grid item xs={12}>
-                <TextField 
-                type="number" 
-                variant="outlined" 
-                margin="normal" placeholder="Quantity..." 
-                inputProps={{ min: 1, max: 100}} 
-                fullWidth 
-                value={taskCounter}
-                onChange={(e) => setTaskCounter(e.target.value)} 
-                required/>
-            </Grid>
-        </React.Fragment>
+        </form>
     )
 }
 
