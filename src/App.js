@@ -39,7 +39,7 @@ function App() {
   const [tasks, setTask ] = useState(initTasks);
   
   const taskSubmit = (task) => {
-    console.log(task);
+    setTask([...tasks, task]);
   }
 
   return (

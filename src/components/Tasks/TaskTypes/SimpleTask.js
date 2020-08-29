@@ -6,9 +6,13 @@ import Button from '@material-ui/core/Button';
 function SimpleTask(props) {
     const [ simpleTask, setSimpleTask ] = useState(null);
 
+    const onSimpleTaskSubmit = (e) => {
+        e.preventDefault();
+        props.onTask(simpleTask);
+    }
 
     return (
-        <form>
+        <form onClick={onSimpleTaskSubmit}>
             <Grid container>
                 <Grid item xs={12}>
                     <TextField variant="outlined"
@@ -21,7 +25,7 @@ function SimpleTask(props) {
                     required/>
                 </Grid>
                 <Grid item xs={12}>
-                    <Button color="default" variant="contained">Submit</Button>
+                    <Button color="default" variant="contained" type="submit">Submit</Button>
                 </Grid>
             </Grid>
         </form>
