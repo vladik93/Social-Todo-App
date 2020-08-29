@@ -39,7 +39,7 @@ function App() {
   const [tasks, setTask ] = useState(initTasks);
   
   const taskSubmit = (task) => {
-    setTask([...tasks, task]);
+    setTask([...tasks, { id: 2, title: null, }]);
   }
 
   return (
