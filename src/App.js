@@ -1,4 +1,4 @@
-import Task from "./scripts/Task.js";
+// import Task from "./scripts/Task.js";
 import './App.css';
 
 import React, { useState, useEffect} from 'react';
@@ -6,7 +6,8 @@ import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
-import CurrentTasks from './components/Tasks/CurrentTasks';
+import SimpleTask from './components/Tasks/SimpleTask';
+import MultistepTask from './components/Tasks/MultistepTask';
 import AddTask from './components/Tasks/AddTask';
 
 import Container from '@material-ui/core/Container';
@@ -26,22 +27,8 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-
-  const initTasks = [
-    {id: 1, title: 'Get Super Fit', subtasks: 
-        [
-            {id: 1, content: 'Do cardio', complete: false}, 
-            {id: 2, content: 'Eat right', complete: false}, 
-            {id: 3, content: 'Don\'t succumb to temptation', complete: false}
-        ], 
-    date: '12/05/20', complete: false}, 
-];
-  const [tasks, setTask ] = useState(initTasks);
+  const [tasks, setTask ] = useState();
   
-  const taskSubmit = (task) => {
-    setTask([...tasks, task]);
-  }
-
   return (
     <Router>
       <div className="App">
@@ -53,17 +40,18 @@ function App() {
               <Login />
             </Route>
             <Route exact path="/tasks">
-              <CurrentTasks tasks={tasks} />
+              <SimpleTask  content="Kill a faggot"/>
+              <SimpleTask content="Eat a Jew" />
+              <MultistepTask />
             </Route>
             <Route exact path="/add_task">
-              <AddTask taskSubmit={taskSubmit} />
+              <AddTask />
             </Route>
             <Route exact path="/logout">
               <Login />
             </Route>
           </Switch>
         </Container>
-        {/* <div className={classes.offset} /> */}
         <Footer />
       </div>
     </Router>
