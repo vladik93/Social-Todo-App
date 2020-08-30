@@ -8,10 +8,10 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 
 // Task Types
-import SimpleTask from './TaskTypes/SimpleTask';
-import CounterTask from './TaskTypes/CounterTask';
-import DeadlineTask from './TaskTypes/DeadlineTask';
-import MultistepTask from './TaskTypes/MultistepTask';
+import SimpleTask from './BackupComps/TaskTypes/SimpleTask';
+import CounterTask from './BackupComps/TaskTypes/CounterTask';
+import DeadlineTask from './BackupComps/TaskTypes/DeadlineTask';
+import MultistepTask from './BackupComps/TaskTypes/MultistepTask';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -23,9 +23,7 @@ function AddTask(props) {
 
 
 
-    const onTask = (data) => {
-        props.taskSubmit(data);
-    }
+ 
 
     const onCounterTask = (task, counter) => {
         console.log(task, counter);
@@ -55,7 +53,7 @@ function AddTask(props) {
                     </Grid>
                 </Grid>
                 {
-                    taskType == 1 ? <SimpleTask onTask={onTask} /> : 
+                    taskType == 1 ? <SimpleTask  /> : 
                     taskType == 2 ? <CounterTask /> : 
                     taskType == 3 ? <DeadlineTask /> :
                     taskType == 4 ? <MultistepTask /> : null
