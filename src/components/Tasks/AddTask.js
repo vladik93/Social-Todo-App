@@ -23,9 +23,7 @@ function AddTask(props) {
 
 
 
-    const onTask = (data) => {
-        props.taskSubmit(data);
-    }
+ 
 
     const onCounterTask = (task, counter) => {
         console.log(task, counter);
@@ -55,7 +53,7 @@ function AddTask(props) {
                     </Grid>
                 </Grid>
                 {
-                    taskType == 1 ? <SimpleTask onTask={onTask} /> : 
+                    taskType == 1 ? <SimpleTask  /> : 
                     taskType == 2 ? <CounterTask /> : 
                     taskType == 3 ? <DeadlineTask /> :
                     taskType == 4 ? <MultistepTask /> : null

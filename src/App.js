@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
 import SimpleTask from './components/Tasks/SimpleTask';
+import DeadlineTask from './components/Tasks/DeadlineTask';
 import MultistepTask from './components/Tasks/MultistepTask';
 import AddTask from './components/Tasks/AddTask';
 
@@ -41,8 +42,8 @@ function App() {
             </Route>
             <Route exact path="/tasks">
               <SimpleTask  content="Kill a faggot"/>
-              <SimpleTask content="Eat a Jew" />
-              <MultistepTask />
+              <MultistepTask title="Do Shit" content={[{id: 1, content: 'Yeah'}, {id: 2, content: 'Fuck'}, {id: 3, content: 'No Man'}]} />
+              <DeadlineTask content="Save Mom from Exploding" deadline={new Date(Date.now()).getTime()/1000} />
             </Route>
             <Route exact path="/add_task">
               <AddTask />

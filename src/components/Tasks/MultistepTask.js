@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 
 import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
@@ -23,8 +24,14 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 
+const useStyles = makeStyles((theme) => ({
+    card: {
+        marginBottom: theme.spacing(1)
+    }
+}));
+
 function MultistepTask(props) {
-    const classes = makeStyles();
+    const classes = useStyles();
     const [ expanded, setExpanded ] = React.useState(false);
 
     return (
@@ -42,18 +49,18 @@ function MultistepTask(props) {
 
                         <Accordion>
                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                                
+                                <Typography variant="body2">{props.title}</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <List>
-                                    {/* {props.subtasks.map((subtask) => ( */}
+                                    {props.content.map((task) => (
                                         <ListItem button>
                                             <ListItemIcon>
                                                 <DoneIcon className={classes.doneIcon} />
                                             </ListItemIcon>
-                                            <ListItemText primary={props.content}/>
+                                            <ListItemText primary={task.content} />
                                         </ListItem>
-                                    ))}
+                                    ))} 
                                 </List>
                             </AccordionDetails>
                             <AccordionActions>
@@ -62,7 +69,6 @@ function MultistepTask(props) {
                         </Accordion>
                     </Card>
                 </Grid>
-                {/* ))} */}
             </Grid>
         </div>
     )
