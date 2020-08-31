@@ -30,21 +30,21 @@ const useStyles = makeStyles((theme) => ({
 function DeadlineTask(props) {
     
     const classes = useStyles();
-    const [currentDate, setCurrentDate ] = useState(new Date(Date.now()).getTime() / 1000);
+    const [currentDate, setCurrentDate ] = useState(new Date(Date.now()).getTime());
 
     useEffect(() => {
         setTimeout(() => {
-            setCurrentDate(currentDate + 1);
+            setCurrentDate(new Date(Date.now()).getTime());
         }, 1000)
 
         // clearTimeout(timeout);
     }, [currentDate]);
 
     const compareSeconds = () => {
-        if(currentDate === props.deadline) {
-            return alert('Times up');
+        if(currentDate >= props.deadline) {
+            alert('Time Up')
         } else {
-            return Math.round(currentDate) + ' /// ' + props.deadline;
+            return currentDate + ' /// ' + props.deadline;
         }
 
     }
@@ -57,7 +57,7 @@ function DeadlineTask(props) {
                         <CardHeader avatar={
                             <Avatar src="/images/profiles/profile1.jpg"></Avatar>
                         }
-                        title={new Date(Date.now()).toDateString()}
+                        title="Date Here..."
                         subheader="Deadline Task"
                         >    
                         </CardHeader>
@@ -67,7 +67,7 @@ function DeadlineTask(props) {
                                
                             </AccordionSummary>
                             <AccordionDetails>
-                                {compareSeconds()}
+                                {compareSeconds(props.id)}
                             </AccordionDetails>
                         </Accordion>
                     </Card>

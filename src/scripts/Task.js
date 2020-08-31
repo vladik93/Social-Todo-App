@@ -30,7 +30,7 @@ class TimedTask extends Task {
     percentageDone() {
         let taskLength = this.deadline - this.startTime;
         let currentProgress = new Date.getTime() - this.startTime;
-        let percentage = currentProgress / currentProgress;   // decimal percentage aka 0.01 = 1%
+        let percentage = currentProgress / taskLength;   // decimal percentage aka 0.01 = 1%
         return percentage; 
     }
 
