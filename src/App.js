@@ -16,34 +16,6 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-// let task = new Task("Fuckoff", "You are shit");
-notifyMe();
-function notifyMe() {
-  // Let's check if the browser supports notifications
-  if (!("Notification" in window)) {
-    alert("This browser does not support desktop notification");
-  }
-
-  // Let's check whether notification permissions have already been granted
-  else if (Notification.permission === "granted") {
-    // If it's okay let's create a notification
-    var notification = new Notification("Hi there!");
-  }
-
-  // Otherwise, we need to ask the user for permission
-  else if (Notification.permission !== "denied") {
-    Notification.requestPermission().then(function (permission) {
-      // If the user accepts, let's create a notification
-      if (permission === "granted") {
-        var notification = new Notification("Hi there!");
-      }
-    });
-  }
-
-  // At last, if the user has denied notifications, and you 
-  // want to be respectful there is no need to bother them any more.
-}
-
 const useStyles = makeStyles((theme) => ({
     offset: theme.mixins.toolbar,
     container: {
@@ -74,7 +46,7 @@ function App() {
             <Route exact path="/tasks">
               <SimpleTask  content="Kill a faggot"/>
               <MultistepTask title="Do Shit" content={[{id: 1, content: 'Yeah'}, {id: 2, content: 'Fuck'}, {id: 3, content: 'No Man'}]} />
-              <DeadlineTask content="Save Mom from Exploding" deadline={new Date('8/31/2020 22:20:00').getTime()} />
+              <DeadlineTask content="Save Mom from Exploding" deadline={'9/01/2020 00:31:00'} />
             </Route>
             <Route exact path="/add_task">
               <AddTask />

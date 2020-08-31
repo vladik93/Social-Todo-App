@@ -28,9 +28,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 function DeadlineTask(props) {
-    
     const classes = useStyles();
-    const [currentDate, setCurrentDate ] = useState(new Date(Date.now()).getTime());
+    const [currentDate, setCurrentDate ] = useState(new Date(Date.now()));
 
     useEffect(() => {
         setTimeout(() => {
@@ -41,10 +40,11 @@ function DeadlineTask(props) {
     }, [currentDate]);
 
     const compareSeconds = () => {
-        if(currentDate >= props.deadline) {
-            alert('Time Up')
+        let deadline = new Date(props.deadline).getTime();
+        if(currentDate >= deadline) {
+            console.log('Time up')
         } else {
-            return currentDate + ' /// ' + props.deadline;
+            return currentDate + ' /// ' + deadline;
         }
 
     }
@@ -67,7 +67,7 @@ function DeadlineTask(props) {
                                
                             </AccordionSummary>
                             <AccordionDetails>
-                                {compareSeconds(props.id)}
+                                {compareSeconds()}
                             </AccordionDetails>
                         </Accordion>
                     </Card>
