@@ -26,12 +26,17 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const initialState =  [
-    {content: 'Save Mom from Exploding', deadline: '8/31/2020 21:59:00'}
+    {id: 1, type: 2, content: 'Save Mom from Exploding', deadline: '8/31/2020 21:59:00', complete: false },
+    {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false}
   ]
 
   const classes = useStyles();
-  const [tasks, setTask ] = useState();
+  const [tasks, setTask ] = useState(initialState);
   
+
+  const onTaskFinished = (id) => {
+    setTask([...tasks, ...tasks.filter((x) => x.id === id).map((task) => task.complete = !task.complete)])
+  }
   
   return (
     <Router>
@@ -44,9 +49,14 @@ function App() {
               <Login />
             </Route>
             <Route exact path="/tasks">
-              <SimpleTask  content="Kill a faggot"/>
-              <MultistepTask title="Do Shit" content={[{id: 1, content: 'Yeah'}, {id: 2, content: 'Fuck'}, {id: 3, content: 'No Man'}]} />
-              <DeadlineTask content="Save Mom from Exploding" deadline={'9/01/2020 00:31:00'} />
+              {tasks.map((task) => {
+                switch(task.type) {
+                  case 1: return <SimpleTask id={task.id} content={task.content} complete={task.complete} onTaskFinished={onTaskFinished} />
+                // break;
+                  case 2: return <DeadlineTask id={task.id} content={task.content} complete={task.complete} status={task.status} onTaskFinished={onTaskFinished} />
+                // break;
+                }
+              })}
             </Route>
             <Route exact path="/add_task">
               <AddTask />

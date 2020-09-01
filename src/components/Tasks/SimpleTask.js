@@ -25,6 +25,11 @@ const useStyles = makeStyles((theme) => ({
 function SimpleTask(props) {
     const classes = useStyles();
 
+    const onCardClick = (id) => {
+        props.onTaskFinished(id);
+        console.log(props.complete)
+    }
+
     return (
         <div className={classes.root}>
             <Grid container>
@@ -35,12 +40,12 @@ function SimpleTask(props) {
                         }
                         title={new Date(Date.now()).toDateString()}
                         subheader="Simple Task"
+                        onClick={onCardClick.bind(this, props.id)}
                         >    
                         </CardHeader>
                         <CardContent>
-                            <Typography variant="body2">
-                                {props.content}
-                            </Typography>
+                            <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through': 'none'}}>{props.content}</Typography>
+                            <Typography variant="body2">{props.status}</Typography>
                         </CardContent>
                     </Card>
                 </Grid>

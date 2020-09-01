@@ -28,25 +28,29 @@ const useStyles = makeStyles((theme) => ({
 
 
 function DeadlineTask(props) {
+    let initState = new Date().getTime();
+                    
     const classes = useStyles();
-    const [currentDate, setCurrentDate ] = useState(new Date(Date.now()));
+    const [currentDate, setCurrentDate ] = useState(initState);
 
     useEffect(() => {
         setTimeout(() => {
-            setCurrentDate(new Date(Date.now()).getTime());
+            setCurrentDate(currentDate + 1);
         }, 1000)
-
-        // clearTimeout(timeout);
     }, [currentDate]);
 
-    const compareSeconds = () => {
+    const compareTime = () => {
         let deadline = new Date(props.deadline).getTime();
-        if(currentDate >= deadline) {
+        if(currentDate <= deadline) {
             console.log('Time up')
         } else {
             return currentDate + ' /// ' + deadline;
         }
 
+    }
+
+    const onCardClick = (id) => {
+        props.onTaskFinished(id);
     }
 
     return (
@@ -59,15 +63,16 @@ function DeadlineTask(props) {
                         }
                         title="Date Here..."
                         subheader="Deadline Task"
+                        onClick={onCardClick.bind(this, props.id)}
                         >    
                         </CardHeader>
                         <Accordion>
                             <AccordionSummary expandIcon={<CircularProgress variant="static" value={45} />} >
-                                <Typography variant="body2">{props.content}</Typography>
-                               
+                                <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through': 'none'}}>{props.content}</Typography>
+                                <Typography variant="body2">&nbsp;{props.status}</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                {compareSeconds()}
+                                {compareTime()}
                             </AccordionDetails>
                         </Accordion>
                     </Card>
