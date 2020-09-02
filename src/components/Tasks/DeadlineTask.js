@@ -29,30 +29,28 @@ const useStyles = makeStyles((theme) => ({
 
 function DeadlineTask(props) {
     let initState = new Date().getTime();
+    let setTime = new Date(props.deadline).getTime();
                     
     const classes = useStyles();
     const [currentDate, setCurrentDate ] = useState(initState);
+    const [deadline, setDeadline ] = useState(setTime)
 
+    const compareTime = () => {
+       
+
+    }
+    
     useEffect(() => {
         setTimeout(() => {
             setCurrentDate(currentDate + 1);
         }, 1000)
     }, [currentDate]);
 
-    const compareTime = () => {
-        let deadline = new Date(props.deadline).getTime();
-        if(currentDate <= deadline) {
-            console.log('Time up')
-        } else {
-            return currentDate + ' /// ' + deadline;
-        }
-
-    }
-
     const onCardClick = (id) => {
         props.onTaskFinished(id);
     }
 
+    console.log(props.timeup);
     return (
         <div className={classes.root}>
             <Grid container>
@@ -72,7 +70,7 @@ function DeadlineTask(props) {
                                 <Typography variant="body2">&nbsp;{props.status}</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                {compareTime()}
+                        
                             </AccordionDetails>
                         </Accordion>
                     </Card>

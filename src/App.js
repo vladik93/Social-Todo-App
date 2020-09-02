@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const initialState =  [
-    {id: 1, type: 2, content: 'Save Mom from Exploding', deadline: '8/31/2020 21:59:00', complete: false },
+    {id: 1, type: 2, content: 'Save Mom from Exploding', deadline: '9/2/2020 21:00:00', complete: false, timeup: false },
     {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false}
   ]
 
@@ -37,6 +37,14 @@ function App() {
   const onTaskFinished = (id) => {
     setTask([...tasks, ...tasks.filter((x) => x.id === id).map((task) => task.complete = !task.complete)])
   }
+
+  const onTaskTimeup = (id) => {
+    console.log([...tasks, ...tasks.filter((x) => x.id === id).map((task) => task.timeup = true)]);
+  }
+
+  useEffect(() => {
+    console.log('Shit changed');
+  }, [tasks])
   
   return (
     <Router>
@@ -53,7 +61,16 @@ function App() {
                 switch(task.type) {
                   case 1: return <SimpleTask id={task.id} content={task.content} complete={task.complete} onTaskFinished={onTaskFinished} />
                 // break;
-                  case 2: return <DeadlineTask id={task.id} content={task.content} complete={task.complete} status={task.status} onTaskFinished={onTaskFinished} />
+                  case 2: return <DeadlineTask 
+                  id={task.id} 
+                  content={task.content} 
+                  deadline={task.deadline} 
+                  complete={task.complete} 
+                  status={task.status} 
+                  timeup={task.timeup}
+                  onTaskFinished={onTaskFinished}  
+                  onTaskTimeup={onTaskTimeup}
+                  />
                 // break;
                 }
               })}
