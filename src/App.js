@@ -24,9 +24,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+
+
+
 function App() {
+  
+  const createDate = (day, month, year,) => {
+    //Month starts from 0 (Jan = 0, Dec = 11)
+    return new Date(year, (month+1), day);
+  };
+  const createDateTime = (day, month, year, hour, minute, second) => {
+      return new Date(year, month, day, hour, minute, second);
+  }
+
+  
   const initialState =  [
-    {id: 1, type: 2, content: 'Save Mom from Exploding', deadline: '8/31/2020 21:59:00', complete: false },
+    {id: 1, type: 2, content: 'Save Mom from Exploding', deadline: createDateTime(8, 31, 2020, 21, 59, 0), complete: false },
     {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false}
   ]
 
@@ -51,10 +64,12 @@ function App() {
             <Route exact path="/tasks">
               {tasks.map((task) => {
                 switch(task.type) {
-                  case 1: return <SimpleTask id={task.id} content={task.content} complete={task.complete} onTaskFinished={onTaskFinished} />
-                // break;
-                  case 2: return <DeadlineTask id={task.id} content={task.content} complete={task.complete} status={task.status} onTaskFinished={onTaskFinished} />
-                // break;
+
+                  case 1: 
+                      return <SimpleTask id={task.id} content={task.content} complete={task.complete} onTaskFinished={onTaskFinished} />
+
+                  case 2: 
+                      return <DeadlineTask id={task.id} content={task.content} complete={task.complete} status={task.status} onTaskFinished={onTaskFinished} />
                 }
               })}
             </Route>
