@@ -36,15 +36,24 @@ function DeadlineTask(props) {
     const [deadline, setDeadline ] = useState(setTime)
 
     const compareTime = () => {
-       
+        if(currentDate < deadline) {
+            console.log('current: ' + currentDate + ' deadline: ' + deadline);
+        } else if(deadline < currentDate) {
+            props.onTaskTimeup(props.id);
+        }
 
     }
     
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setInterval = setInterval(() => setCurrentDate(Date.now()), 1000);
+    //     }, 1000)
+    // }, []);
+
     useEffect(() => {
-        setTimeout(() => {
-            setCurrentDate(currentDate + 1);
-        }, 1000)
-    }, [currentDate]);
+        compareTime();
+    }, [currentDate])
+
 
     const onCardClick = (id) => {
         props.onTaskFinished(id);
@@ -70,7 +79,7 @@ function DeadlineTask(props) {
                                 <Typography variant="body2">&nbsp;{props.status}</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                        
+                                {props.timeout ? 'Time\'s up, asshole!' : 'Still goin...'}
                             </AccordionDetails>
                         </Accordion>
                     </Card>

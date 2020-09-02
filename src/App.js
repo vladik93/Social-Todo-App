@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const initialState =  [
-    {id: 1, type: 2, content: 'Save Mom from Exploding', deadline: '9/2/2020 21:00:00', complete: false, timeup: false },
+    {id: 1, type: 2, content: 'Save Mom from Exploding', deadline: '9/3/2020 00:54:00', complete: false, timeup: false },
     {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false}
   ]
 
@@ -35,17 +35,16 @@ function App() {
   
 
   const onTaskFinished = (id) => {
-    setTask([...tasks, ...tasks.filter((x) => x.id === id).map((task) => task.complete = !task.complete)])
+    setTask([...tasks, ...tasks.map((task) => {
+      
+    })])
   }
 
   const onTaskTimeup = (id) => {
-    console.log([...tasks, ...tasks.filter((x) => x.id === id).map((task) => task.timeup = true)]);
+    setTask([...tasks, ...tasks.filter((x) => x.id === id).map((task) => task.timeup = true)]);
   }
-
-  useEffect(() => {
-    console.log('Shit changed');
-  }, [tasks])
   
+  console.log(tasks);
   return (
     <Router>
       <div className="App">
