@@ -36,19 +36,20 @@ function DeadlineTask(props) {
     const [deadline, setDeadline ] = useState(setTime)
 
     const compareTime = () => {
-        if(currentDate < deadline) {
-            console.log('current: ' + currentDate + ' deadline: ' + deadline);
-        } else if(deadline < currentDate) {
-            props.onTaskTimeup(props.id);
-        }
+       if(currentDate > deadline) {
+           props.onTaskTimeup(props.id);
+       } else {
+           console.log((deadline - currentDate));
+       }
 
     }
     
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setInterval = setInterval(() => setCurrentDate(Date.now()), 1000);
-    //     }, 1000)
-    // }, []);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setCurrentDate(new Date().getTime());
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, [currentDate]);
 
     useEffect(() => {
         compareTime();
@@ -59,27 +60,30 @@ function DeadlineTask(props) {
         props.onTaskFinished(id);
     }
 
-    console.log(props.timeup);
     return (
         <div className={classes.root}>
             <Grid container>
                 <Grid item xs={12} sm={6}>
                     <Card variant="elevation" className={classes.card}>
-                        <CardHeader avatar={
-                            <Avatar src="/images/profiles/profile1.jpg"></Avatar>
-                        }
-                        title="Date Here..."
-                        subheader="Deadline Task"
-                        onClick={onCardClick.bind(this, props.id)}
-                        >    
+                        <CardHeader 
+                            avatar={
+                                <Avatar src="/images/profiles/profile1.jpg"></Avatar>
+                            }
+                            title="Date Here..."
+                            subheader="Deadline Task"
+                            onClick={onCardClick.bind(this, props.id)}
+                        >   
                         </CardHeader>
+                        <CardContent>
+                            <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through': 'none'}}>{props.content}</Typography>
+                            <Typography variant="body2">&nbsp;{props.status}</Typography>
+                        </CardContent>
                         <Accordion>
                             <AccordionSummary expandIcon={<CircularProgress variant="static" value={45} />} >
-                                <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through': 'none'}}>{props.content}</Typography>
-                                <Typography variant="body2">&nbsp;{props.status}</Typography>
+                                {props.timeup ? 'Time\'s Up!' : 'In Progress'}
                             </AccordionSummary>
                             <AccordionDetails>
-                                {props.timeout ? 'Time\'s up, asshole!' : 'Still goin...'}
+                            
                             </AccordionDetails>
                         </Accordion>
                     </Card>
