@@ -28,7 +28,7 @@ function App() {
   const initialState =  [
     {id: 1, type: 2, content: 'Save Mom from Exploding', startDate: '9/5/2020 20:55:00', deadline: '9/5/2020 20:59:00', complete: false, timeup: false },
     {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false},
-    {id: 3, type: 2, content: 'Save Mom from Birthing Me', startDate: '9/5/2020 20:05:00', deadline: '9/5/2020 20:53:00', complete: false, timeup: false}
+    {id: 3, type: 2, content: 'Save Mom from Birthing Me', startDate: '9/5/2020 20:05:00', deadline: '9/5/2020 21:21:00', complete: false, timeup: false}
   ]
 
   const classes = useStyles();

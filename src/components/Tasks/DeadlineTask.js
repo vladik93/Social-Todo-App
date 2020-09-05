@@ -92,9 +92,9 @@ function DeadlineTask(props) {
                         </CardContent>
                         <Accordion>
                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                                <Typography variant="caption">{props.timeup ? 'Time\'s Up!' : 'In Progress'}</Typography>
                                 <Box position="relative" display="inline-flex">
-                                    {/* {props.timeup ? 'Time\'s Up!' : 'In Progress'} */}
-                                    <CircularProgress variant="static" thickness={7.0} size={75} value={calcPercentageLeft()} />
+                                    <CircularProgress variant="static" thickness={7.0} size={50} value={calcPercentageLeft()} />
                                     <Box 
                                         top={0}
                                         left={0}
@@ -104,8 +104,8 @@ function DeadlineTask(props) {
                                         display="flex"
                                         alignItems="center"
                                         justifyContent="center"
-                                    >
-                                        <Typography variant="caption" style={{fontSize: '10px'}}>{calcPercentageLeft()}%</Typography>
+                                        >
+                                        <Typography variant="caption" style={{fontSize: '10px'}}>{calcPercentageLeft()}</Typography>
                                     </Box>
                                 </Box>
                             </AccordionSummary>
