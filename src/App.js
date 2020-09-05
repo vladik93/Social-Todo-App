@@ -26,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const initialState =  [
-    {id: 1, type: 2, content: 'Save Mom from Exploding', deadline: '9/4/2020 20:14:00', complete: false, timeup: false },
+    {id: 1, type: 2, content: 'Save Mom from Exploding', startDate: '9/5/2020 20:55:00', deadline: '9/5/2020 20:59:00', complete: false, timeup: false },
     {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false},
-    {id: 3, type: 2, content: 'Save Mom from Birthing Me', deadline: '9/4/2020 20:56', complete: false, timeup: false}
+    {id: 3, type: 2, content: 'Save Mom from Birthing Me', startDate: '9/5/2020 20:05:00', deadline: '9/5/2020 20:53:00', complete: false, timeup: false}
   ]
 
   const classes = useStyles();
@@ -70,7 +70,8 @@ function App() {
                 // break;
                   case 2: return <DeadlineTask 
                   id={task.id} 
-                  content={task.content} 
+                  content={task.content}
+                  startDate={task.startDate} 
                   deadline={task.deadline} 
                   complete={task.complete} 
                   status={task.status} 
