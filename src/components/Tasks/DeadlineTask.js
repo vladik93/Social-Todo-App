@@ -107,7 +107,7 @@ function DeadlineTask(props) {
                                         alignItems="center"
                                         justifyContent="center"
                                         >
-                                        <Typography variant="caption" style={{fontSize: '10px'}}>{calcPercentageLeft() + "%"}</Typography>
+                                        <Typography variant="caption" style={{fontSize: '10px'}}>{calcPercentageLeft() + "%as"}</Typography>
                                     </Box>
                                 </Box>
                             </AccordionSummary>
