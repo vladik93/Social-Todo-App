@@ -29,7 +29,7 @@ function TaskHeader(props)
                             avatar={
                                 <Avatar src={props.avatarSrc}></Avatar>
                             }
-                            title= {props.title}
+                            title={props.title}
                             subheader= {props.subheader}
                             action={props.action}
                             onClick={onCardClick.bind(this, props.id)}
