@@ -49,8 +49,8 @@ function DeadlineTask(props) {
 
     const calcPercentageLeft = () => {
         let result = 100 * ((currentDate - startDate) / (deadline - startDate));
-        if(result <= 0) {
-            return;
+        if(result > 100) {
+            return "Completed";
         }
         return result.toFixed(1);
     }
