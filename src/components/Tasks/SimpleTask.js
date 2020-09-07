@@ -5,6 +5,11 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
 
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -47,6 +52,14 @@ function SimpleTask(props) {
                             <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through': 'none'}}>{props.content}</Typography>
                             <Typography variant="body2">{props.status}</Typography>
                         </CardContent>
+                        <CardActions>
+                            <IconButton>
+                                <DeleteIcon />
+                            </IconButton>
+                            <IconButton>
+                                <EditIcon />
+                            </IconButton>
+                        </CardActions>
                     </Card>
                 </Grid>
             </Grid>

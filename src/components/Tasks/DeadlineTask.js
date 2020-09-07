@@ -14,6 +14,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -116,6 +117,9 @@ function DeadlineTask(props) {
                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                 <IconButton>
                                     <DeleteIcon />
+                                </IconButton>
+                                <IconButton>
+                                    <EditIcon />
                                 </IconButton>
                             </AccordionSummary>
                             <AccordionDetails>
