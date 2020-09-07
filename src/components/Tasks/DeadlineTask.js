@@ -80,6 +80,21 @@ function DeadlineTask(props) {
         avatarSrc={"/images/profiles/profile1.jpg"}
         title={"Date here.."}
         subheader={"Deadline task"}
+        action={<Box position="relative" display="inline-flex">
+        <CircularProgress variant="static" thickness={7.0} size={50} value={calcPercentageLeft()}></CircularProgress>
+        <Box 
+            top={0}
+            left={0}
+            bottom={0}
+            right={0}
+            position="absolute"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+        >
+            <Typography variant="caption" style={{fontSize: '10px'}}>{calcPercentageLeft() + "%"}</Typography>
+        </Box>
+    </Box>}
         deadlinePercentage={<Typography>{calcPercentageLeft()}</Typography>}
         afterCard=
         {
@@ -88,21 +103,6 @@ function DeadlineTask(props) {
                 <Typography variant="caption">
                     {props.timeup ? 'Time\'s Up!' : 'In Progress'}
                 </Typography>
-                <Box position="relative" display="inline-flex">
-                    <CircularProgress variant="static" thickness={7.0} size={50} value={calcPercentageLeft()} />
-                    <Box 
-                        top={0}
-                        left={0}
-                        bottom={0}
-                        right={0}
-                        position="absolute"
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                        >
-                        <Typography variant="caption" style={{fontSize: '10px'}}>{calcPercentageLeft() + "%as"}</Typography>
-                    </Box>
-                </Box>
             </AccordionSummary>
             </Accordion>
         }

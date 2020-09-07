@@ -31,6 +31,7 @@ function TaskHeader(props)
                             }
                             title= {props.title}
                             subheader= {props.subheader}
+                            action={props.action}
                             onClick={onCardClick.bind(this, props.id)}
                         >   
                         </CardHeader>
