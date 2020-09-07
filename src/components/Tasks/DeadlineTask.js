@@ -9,17 +9,27 @@ import Card from '@material-ui/core/Card';
 import Box from '@material-ui/core/box';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
+
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import TimelapseIcon from '@material-ui/icons/Timelapse';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 import IconButton from '@material-ui/core/IconButton';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 
@@ -57,16 +67,20 @@ function DeadlineTask(props) {
     const calcPercentageLeft = () => {
         let result = 100 * ((currentDate - startDate) / (deadline - startDate));
         if(result > 100) {
-            return "Completed";
+            return "Time Up";
         }
         return result.toFixed(1);
     }
     
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setCurrentDate(new Date().getTime());
-        }, 1000);
-        return () => clearTimeout(timer);
+        if(!props.timeup) {
+            const timer = setTimeout(() => {
+                setCurrentDate(new Date().getTime());
+            }, 1000);
+            return () => clearTimeout(timer);
+        } else {
+            return;
+        }
     }, [currentDate]);
 
     useEffect(() => {
@@ -92,7 +106,7 @@ function DeadlineTask(props) {
                             subheader="Deadline Task"
                             action={
                                 <Box position="relative" display="inline-flex">
-                                    <CircularProgress variant="static" thickness={7.0} size={50} value={calcPercentageLeft()}></CircularProgress>
+                                    <CircularProgress variant="static" thickness={6.0} size={60} value={calcPercentageLeft()}></CircularProgress>
                                     <Box 
                                         top={0}
                                         left={0}
@@ -123,7 +137,29 @@ function DeadlineTask(props) {
                                 </IconButton>
                             </AccordionSummary>
                             <AccordionDetails>
-
+                                <List>
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <ScheduleIcon />
+                                        </ListItemIcon>
+                                       <ListItemText primary={new Date(startDate).toLocaleString()} secondary="Start" />
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <TimelapseIcon />
+                                        </ListItemIcon>
+                                       <ListItemText primary={new Date(deadline).toLocaleString()} secondary="Deadline" />
+                                    </ListItem>
+                                    { !props.timeup ?
+                                        <ListItem>
+                                            <ListItemIcon>
+                                                <TimelapseIcon />
+                                            </ListItemIcon>
+                                            <ListItemText primary={new Date(currentDate).toLocaleString()} secondary="Current Date" />
+                                        </ListItem> 
+                                    : null }
+                                    
+                                </List>
                             </AccordionDetails>
                         </Accordion>
                     </Card>
