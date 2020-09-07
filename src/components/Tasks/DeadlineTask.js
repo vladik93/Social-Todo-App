@@ -48,11 +48,11 @@ function DeadlineTask(props) {
     }
 
     const calcPercentageLeft = () => {
-        let result = Math.floor(100 * (1 - (currentDate - startDate) / (deadline - startDate)));
+        let result = 100 * ((currentDate - startDate) / (deadline - startDate));
         if(result <= 0) {
             return;
         }
-        return result;
+        return result.toFixed(1);
     }
     
     useEffect(() => {
@@ -94,7 +94,9 @@ function DeadlineTask(props) {
                             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                 <Typography variant="caption">{props.timeup ? 'Time\'s Up!' : 'In Progress'}</Typography>
                                 <Box position="relative" display="inline-flex">
-                                    <CircularProgress variant="static" thickness={7.0} size={50} value={calcPercentageLeft()} />
+                                    <CircularProgress variant="static" thickness={7.0} size={50} value={calcPercentageLeft()} >
+                                        
+                                    </CircularProgress>
                                     <Box 
                                         top={0}
                                         left={0}
@@ -105,7 +107,7 @@ function DeadlineTask(props) {
                                         alignItems="center"
                                         justifyContent="center"
                                         >
-                                        <Typography variant="caption" style={{fontSize: '10px'}}>{calcPercentageLeft()}</Typography>
+                                        <Typography variant="caption" style={{fontSize: '10px'}}>{calcPercentageLeft() + "%"}</Typography>
                                     </Box>
                                 </Box>
                             </AccordionSummary>
