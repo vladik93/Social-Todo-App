@@ -6,9 +6,8 @@ import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
-import SimpleTask from './components/Tasks/SimpleTask';
-import DeadlineTask from './components/Tasks/DeadlineTask';
-import MultistepTask from './components/Tasks/MultistepTask';
+
+import {CounterTask, MultistepTask, DeadlineTask, SimpleTask}  from './components/Tasks/Tasks';
 import AddTask from './components/Tasks/AddTask';
 
 import Container from '@material-ui/core/Container';
@@ -79,7 +78,8 @@ function App() {
             <Route exact path="/tasks">
               {tasks.map((task) => {
                 switch(task.type) {
-                  case 1: return <SimpleTask id={task.id} content={task.content} complete={task.complete} onTaskFinished={onTaskFinished} />
+                  // case 1: return <SimpleTask id={task.id} content={task.content} complete={task.complete} onTaskFinished={onTaskFinished} />
+                  case 1: return <CounterTask></CounterTask>
                 // break;
                   case 2: return <DeadlineTask 
                   id={task.id} 
