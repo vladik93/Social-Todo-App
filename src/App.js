@@ -25,10 +25,20 @@ const useStyles = makeStyles((theme) => ({
 
 
 function App() {
+
+  const createDate = (day, month, year,) => {
+    //Month starts from 0 (Jan = 0, Dec = 11)
+    return new Date(year, (month+1), day);
+  };
+  const createDateTime = (day, month, year, hour, minute, second) => {
+      return new Date(year, month, day, hour, minute, second);
+  }
+
+
   const initialState =  [
-    {id: 1, type: 2, content: 'Save Mom from Exploding', startDate: '9/5/2020 20:55:00', deadline: '9/5/2020 20:59:00', complete: false, timeup: false },
+    {id: 1, type: 2, content: 'Save Mom from Exploding', startDate: createDateTime(5, 9, 2020, 20, 55, 0) , deadline: createDateTime(5, 9, 2020, 20, 59, 0) , complete: false, timeup: false },
     {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false},
-    {id: 3, type: 2, content: 'Save Mom from Birthing Me', startDate: '9/5/2020 20:05:00', deadline: '9/5/2020 21:21:00', complete: false, timeup: false}
+    {id: 3, type: 2, content: 'Save Mom from Birthing Me', startDate: createDateTime(5, 9, 2020, 20, 5, 0) , deadline: createDateTime(5, 9, 2020, 21, 21, 0) , complete: false, timeup: false}
   ]
 
   const classes = useStyles();
