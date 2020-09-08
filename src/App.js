@@ -89,7 +89,7 @@ function App() {
                     onTaskFinished={onTaskFinished}  
                     onTaskTimeup={onTaskTimeup}
                   />
-                  case 3: return <CounterTask />
+                  case 3: return <CounterTask id={task.id} content={task.content} complete={task.complete} />
                 }
               })}
             </Route>
