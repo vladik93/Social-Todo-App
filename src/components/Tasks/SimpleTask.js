@@ -1,18 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
-
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
+import TaskHeader from './TaskHeader';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -35,9 +23,11 @@ function SimpleTask(props) {
         console.log(props.complete)
     }
 
+    console.log(props.children);
+
     return (
         <div className={classes.root}>
-            <Grid container>
+            {/* <Grid container>
                 <Grid item xs={12} sm={6}>
                     <Card variant="elevation" className={classes.card}>
                         <CardHeader avatar={
@@ -62,7 +52,7 @@ function SimpleTask(props) {
                         </CardActions>
                     </Card>
                 </Grid>
-            </Grid>
+            </Grid> */}
         </div>
     )
 }

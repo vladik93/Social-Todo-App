@@ -1,6 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Grid, Card, CardHeader, CardContent, Accordion, Avatar, Typography} from "@material-ui/core"
+
+import Grid from '@material-ui/core/grid';
+
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import IconButton from '@material-ui/core/IconButton';
+
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -30,7 +43,7 @@ function TaskHeader(props)
                                 <Avatar src={props.avatarSrc}></Avatar>
                             }
                             title={props.title}
-                            subheader= {props.subheader}
+                            subheader={props.children.subheader}
                             action={props.action}
                             onClick={onCardClick.bind(this, props.id)}
                         >   
@@ -38,9 +51,15 @@ function TaskHeader(props)
                         <CardContent>
                             <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through': 'none'}}>{props.content}</Typography>
                             <Typography variant="body2">&nbsp;{props.status}</Typography>
-                            { props.deadLinePercentage}
                         </CardContent>
-                        {props.afterCard}
+                        <CardActions>
+                            <IconButton>
+                                <DeleteIcon />
+                            </IconButton>
+                            <IconButton>
+                                <EditIcon />
+                            </IconButton>
+                        </CardActions>
                         
                     </Card>
                 </Grid>

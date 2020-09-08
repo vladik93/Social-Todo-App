@@ -37,12 +37,6 @@ const useStyles = makeStyles((theme) => ({
     card: {
         marginBottom: theme.spacing(1)
     },
-    cardActions: {
-        justifyContent: 'space-between'
-    },
-    doneIcon: {
-        fontSize: '2rem'
-    }
 }));
 
 
@@ -93,8 +87,7 @@ function DeadlineTask(props) {
     }
 
     return (
-        
-        <div className={classes.root}>
+        <div>
             <Grid container>
                 <Grid item xs={12} sm={6}>
                     <Card variant="elevation" className={classes.card}>
