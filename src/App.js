@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 
 import SimpleTask from './components/Tasks/SimpleTask';
 import DeadlineTask from './components/Tasks/DeadlineTask';
+import CounterTask from './components/Tasks/CounterTask';
 import AddTask from './components/Tasks/AddTask';
 
 import Container from '@material-ui/core/Container';
@@ -37,7 +38,7 @@ function App() {
   const initialState =  [
     {id: 1, type: 2, content: 'Save Mom from Exploding', startDate: createDateTime(7, 9, 2020, 20, 22, 0) , deadline: createDateTime(7, 9, 2020, 21, 49, 5) , complete: false, timeup: false },
     {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false},
-    {id: 3, type: 2, content: 'Save Mom from Birthing Me', startDate: createDateTime(5, 9, 2020, 20, 5, 0) , deadline: createDateTime(5, 9, 2020, 21, 21, 5) , complete: false, timeup: false}
+    {id: 3, type: 3, content: 'Eat Cat Nine Times', complete: false}
   ]
 
   const classes = useStyles();
@@ -61,7 +62,6 @@ function App() {
     }))
   }
 
-  
   return (
     <Router>
       <div className="App">
@@ -89,6 +89,7 @@ function App() {
                     onTaskFinished={onTaskFinished}  
                     onTaskTimeup={onTaskTimeup}
                   />
+                  case 3: return <CounterTask />
                 }
               })}
             </Route>
