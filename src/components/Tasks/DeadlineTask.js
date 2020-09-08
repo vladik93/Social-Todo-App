@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 
-import TaskHeader from "./TaskHeader.js"
+import TaskWrapper from "./TaskWrapper";
 import { makeStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
@@ -95,76 +95,70 @@ function DeadlineTask(props) {
     return (
         
         <div className={classes.root}>
-            <Grid container>
-                <Grid item xs={12} sm={6}>
-                    <Card variant="elevation" className={classes.card}>
-                        <CardHeader 
-                            avatar={
-                                <Avatar src="/images/profiles/profile1.jpg"></Avatar>
-                            }
-                            title="Date Here..."
-                            subheader="Deadline Task"
-                            action={
-                                <Box position="relative" display="inline-flex">
-                                    <CircularProgress variant="static" thickness={6.0} size={60} value={calcPercentageLeft()}></CircularProgress>
-                                    <Box 
-                                        top={0}
-                                        left={0}
-                                        bottom={0}
-                                        right={0}
-                                        position="absolute"
-                                        display="flex"
-                                        alignItems="center"
-                                        justifyContent="center"
-                                        >
-                                        <Typography variant="caption" style={{fontSize: '10px'}}>{calcPercentageLeft()}</Typography>
-                                    </Box>
-                                </Box>
-                            }
-                            onClick={onCardClick.bind(this, props.id)}
-                        >   
-                        </CardHeader>
-                        <CardContent>
-                            <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through': 'none'}}>{props.content}</Typography>
-                        </CardContent>
-                        <Accordion>
-                            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                                <IconButton>
-                                    <DeleteIcon />
-                                </IconButton>
-                                <IconButton>
-                                    <EditIcon />
-                                </IconButton>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <List>
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <ScheduleIcon />
-                                        </ListItemIcon>
-                                       <ListItemText primary={new Date(startDate).toLocaleString()} secondary="Start" />
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <TimelapseIcon />
-                                        </ListItemIcon>
-                                       <ListItemText primary={new Date(deadline).toLocaleString()} secondary="Deadline" />
-                                    </ListItem>
-                                    { !props.timeup ?
-                                        <ListItem>
-                                            <ListItemIcon>
-                                                <TimelapseIcon />
-                                            </ListItemIcon>
-                                            <ListItemText primary={new Date(currentDate).toLocaleString()} secondary="Current Date" />
-                                        </ListItem> 
-                                    : null }
-                                    
-                                </List>
-                            </AccordionDetails>
-                        </Accordion>
-                    </Card>
-                </Grid>
-            </Grid>
+            <TaskWrapper>
+                <CardHeader 
+                    avatar={
+                        <Avatar src="/images/profiles/profile1.jpg"></Avatar>
+                    }
+                    title="Date Here..."
+                    subheader="Deadline Task"
+                    action={
+                        <Box position="relative" display="inline-flex">
+                            <CircularProgress variant="static" thickness={6.0} size={60} value={calcPercentageLeft()}></CircularProgress>
+                                <Box 
+                                    top={0}
+                                    left={0}
+                                    bottom={0}
+                                    right={0}
+                                    position="absolute"
+                                    display="flex"
+                                    alignItems="center"
+                                    justifyContent="center"
+                                >
+                                <Typography variant="caption" style={{fontSize: '10px'}}>{calcPercentageLeft()}</Typography>
+                            </Box>
+                        </Box>
+                    } 
+                    onClick={onCardClick.bind(this, props.id)} >   
+                </CardHeader>
+                <CardContent>
+                    <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through': 'none'}}>{props.content}</Typography>
+                </CardContent>
+                <Accordion>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <IconButton>
+                            <DeleteIcon />
+                        </IconButton>
+                        <IconButton>
+                            <EditIcon />
+                        </IconButton>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <List>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <ScheduleIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={new Date(startDate).toLocaleString()} secondary="Start" />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemIcon>
+                                    <TimelapseIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={new Date(deadline).toLocaleString()} secondary="Deadline" />
+                            </ListItem>
+                            { !props.timeup ?
+                                <ListItem>
+                                    <ListItemIcon>
+                                        <TimelapseIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={new Date(currentDate).toLocaleString()} secondary="Current Date" />
+                                </ListItem> 
+                            : null }   
+                        </List>
+                    </AccordionDetails>
+                </Accordion>
+            </TaskWrapper>
         </div>
     )
 }
