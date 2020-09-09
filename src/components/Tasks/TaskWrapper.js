@@ -23,7 +23,7 @@ function TaskWrapper(props)
     return (
         <div className={classes.root}>
             <Grid container>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                     <Card variant="elevation" className={classes.card}>
                         {props.children}
                     </Card>

@@ -34,15 +34,15 @@ import Typography from '@material-ui/core/Typography';
 
 
 const useStyles = makeStyles((theme) => ({
-    card: {
-        marginBottom: theme.spacing(1)
-    },
-    cardActions: {
-        justifyContent: 'space-between'
-    },
-    doneIcon: {
-        fontSize: '2rem'
-    }
+    // card: {
+    //     marginBottom: theme.spacing(1)
+    // },
+    // cardActions: {
+    //     justifyContent: 'space-between'
+    // },
+    // doneIcon: {
+    //     fontSize: '2rem'
+    // }
 }));
 
 
