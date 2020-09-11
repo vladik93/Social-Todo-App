@@ -37,7 +37,7 @@ function App() {
 
   const initialState =  [
     // {id: 1, type: 2, content: 'Save Mom from Exploding', startDate: createDateTime(7, 9, 2020, 20, 22, 0) , deadline: createDateTime(7, 9, 2020, 21, 49, 5) , complete: false, timeup: false },
-    // {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false},
+    {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false},
     {id: 3, type: 3, content: 'Eat Cat Nine Times', overallCount: 9, doneCount: 3, complete: false}
   ]
 

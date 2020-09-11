@@ -92,8 +92,7 @@ function CounterTask(props) {
                     }>
                 </CardHeader>
                 <CardContent>
-                    <Typography variant="body2">{props.content}</Typography>
-                    <Typography variant="body2">{props.complete ? 'Yes' : 'No'}</Typography>
+                    <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through' : 'none'}}>{props.content}</Typography>
                 </CardContent>
                 <Accordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
