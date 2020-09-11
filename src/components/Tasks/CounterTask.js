@@ -10,6 +10,9 @@ import Typography from '@material-ui/core/Typography';
 
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -60,6 +63,11 @@ function CounterTask(props) {
         }
     }
 
+    const calcProgressPercentage = () => {
+        let result = 100 * (doneCount / overallCount);
+        return result.toFixed(1);
+    }
+ 
     useEffect(() => {
         if(doneCount >= overallCount) {
             props.onTaskFinished(props.id, true)
@@ -93,6 +101,7 @@ function CounterTask(props) {
                 </CardHeader>
                 <CardContent>
                     <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through' : 'none'}}>{props.content}</Typography>
+                    
                 </CardContent>
                 <Accordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -105,6 +114,11 @@ function CounterTask(props) {
                             </IconButton>
                         </CardActions>
                     </AccordionSummary>
+                    <AccordionDetails>
+                        <LinearProgress variant="determinate" />
+
+                        {calcProgressPercentage()}
+                    </AccordionDetails>
                 </Accordion>
             </TaskWrapper>
         </div>
