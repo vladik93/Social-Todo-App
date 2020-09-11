@@ -36,8 +36,8 @@ function App() {
   }
 
   const initialState =  [
-    {id: 1, type: 2, content: 'Save Mom from Exploding', startDate: createDateTime(7, 9, 2020, 20, 22, 0) , deadline: createDateTime(7, 9, 2020, 21, 49, 5) , complete: false, timeup: false },
-    {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false},
+    // {id: 1, type: 2, content: 'Save Mom from Exploding', startDate: createDateTime(7, 9, 2020, 20, 22, 0) , deadline: createDateTime(7, 9, 2020, 21, 49, 5) , complete: false, timeup: false },
+    // {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false},
     {id: 3, type: 3, content: 'Eat Cat Nine Times', overallCount: 9, doneCount: 3, complete: false}
   ]
 
@@ -45,10 +45,14 @@ function App() {
   const [tasks, setTask ] = useState(initialState);
   
 
-  const onTaskFinished = (id) => {
-    // setTask([...tasks, ...tasks.map((task) => {
-      
-    // })])
+  const onTaskFinished = (id, bool) => {
+    setTask(tasks.map((task) => {
+      if(task.id === id) {
+        return { ...task, complete: bool}
+      } else {
+        return task;
+      }
+    }))
   }
 
 
@@ -61,6 +65,8 @@ function App() {
       } 
     }))
   }
+
+  console.log(tasks);
 
   return (
     <Router>
@@ -93,7 +99,8 @@ function App() {
                   content={task.content} 
                   overallCount={task.overallCount}
                   doneCount={task.doneCount}
-                  complete={task.complete} />
+                  complete={task.complete}
+                  onTaskFinished={onTaskFinished} />
                 }
               })}
             </Route>

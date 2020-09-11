@@ -61,7 +61,11 @@ function CounterTask(props) {
     }
 
     useEffect(() => {
-        // onCounterStateChange();
+        if(doneCount >= overallCount) {
+            props.onTaskFinished(props.id, true)
+        } else {
+            props.onTaskFinished(props.id, false);
+        }
     }, [doneCount])
 
 
@@ -89,6 +93,7 @@ function CounterTask(props) {
                 </CardHeader>
                 <CardContent>
                     <Typography variant="body2">{props.content}</Typography>
+                    <Typography variant="body2">{props.complete ? 'Yes' : 'No'}</Typography>
                 </CardContent>
                 <Accordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
