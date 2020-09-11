@@ -33,7 +33,7 @@ function SimpleTask(props) {
     const classes = useStyles();
 
     const onCardClick = (id) => {
-        props.onTaskFinished(id);
+        props.onTaskFinished(id, true);
         console.log(props.complete)
     }
 

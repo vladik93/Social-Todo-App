@@ -89,7 +89,7 @@ function DeadlineTask(props) {
 
 
     const onCardClick = (id) => {
-        props.onTaskFinished(id);
+        props.onTaskFinished(id, true);
     }
 
     return (
