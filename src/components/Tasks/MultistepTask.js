@@ -17,13 +17,16 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccordionActions from '@material-ui/core/AccordionActions';
 import DoneIcon from '@material-ui/icons/Done';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
@@ -61,7 +64,27 @@ function MultistepTask(props) {
                         </IconButton>
                     </AccordionSummary>
                     <AccordionDetails>
-                                
+                        <List dense="dense">
+                            {props.steps.map((step) => (
+                                <ListItem button>
+                                    <ListItemIcon>
+                                        <CheckBoxIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary={step.task} />
+                                    <ListItemSecondaryAction>
+                                        <IconButton edge="end">
+                                            <DeleteIcon />
+                                        </IconButton>
+                                        <IconButton edge="end">
+                                            <EditIcon />
+                                        </IconButton>
+                                    </ListItemSecondaryAction>
+                                </ListItem>
+                            ))}
+                        </List>
+                        {/* {props.steps.map((step) => {
+                            return step.task;
+                        })} */}
                     </AccordionDetails>
                 </Accordion>
             </TaskWrapper>
