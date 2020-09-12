@@ -34,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
     },
     minusOne: {
         color: '#000',
+    },
+    progressBar: {
+        padding: '0.3rem',
+        marginTop: '1.2rem',
+        boxShadow: '1px 1px 1px gray',
+        borderRadius: '0.5rem'
     }
     // cardOptions: {
     //     display: 'flex',
@@ -65,7 +71,7 @@ function CounterTask(props) {
 
     const calcProgressPercentage = () => {
         let result = 100 * (doneCount / overallCount);
-        return result.toFixed(1);
+        return result.toFixed(0);
     }
  
     useEffect(() => {
@@ -96,14 +102,21 @@ function CounterTask(props) {
                                 <ArrowDropDownIcon />
                             </IconButton>
                         </div>
-
                     }>
                 </CardHeader>
                 <CardContent>
                     <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through' : 'none'}}>{props.content}</Typography>
-                    
+                    <LinearProgress variant="determinate" value={calcProgressPercentage()} className={classes.progressBar}  color="primary" />
                 </CardContent>
-                <Accordion>
+                <CardActions>
+                    <IconButton>
+                        <DeleteIcon />
+                    </IconButton>
+                    <IconButton>
+                        <EditIcon />
+                    </IconButton>
+                </CardActions>
+                {/* <Accordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <CardActions>
                             <IconButton>
@@ -115,11 +128,9 @@ function CounterTask(props) {
                         </CardActions>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <LinearProgress variant="determinate" />
-
-                        {calcProgressPercentage()}
+                        
                     </AccordionDetails>
-                </Accordion>
+                </Accordion> */}
             </TaskWrapper>
         </div>
     )
