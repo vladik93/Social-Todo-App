@@ -10,6 +10,7 @@ import Login from './components/Login/Login';
 import SimpleTask from './components/Tasks/SimpleTask';
 import DeadlineTask from './components/Tasks/DeadlineTask';
 import CounterTask from './components/Tasks/CounterTask';
+import MultistepTask from './components/Tasks/MultistepTask';
 import AddTask from './components/Tasks/AddTask';
 
 import Container from '@material-ui/core/Container';
@@ -39,7 +40,8 @@ function App() {
     // {id: 1, type: 2, content: 'Save Mom from Exploding', startDate: createDateTime(7, 9, 2020, 20, 22, 0) , deadline: createDateTime(7, 9, 2020, 21, 49, 5) , complete: false, timeup: false },
     {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false},
     {id: 3, type: 3, content: 'Eat Cat Nine Times', overallCount: 9, doneCount: 3, complete: false},
-    {id: 4, type: 3, content: 'Kill enough zombies to end appocalypse. Then return home for **ssausage**', overallCount: 100, doneCount: 15, complete: false}
+    {id: 4, type: 3, content: 'Kill enough zombies to end appocalypse. Then return home for **ssausage**', overallCount: 100, doneCount: 15, complete: false},
+    {id: 5, type: 4, content: 'Finish steps to world domination', steps: [{id: 1, task: 'Take over government'}, {id: 2, task: 'Proclaim dictatorship'}, {id: 3, task: 'Enjoy delicious shwarma'}]}
   ]
 
   const classes = useStyles();
@@ -67,8 +69,6 @@ function App() {
     }))
   }
 
-  console.log(tasks);
-
   return (
     <Router>
       <div className="App">
@@ -82,9 +82,12 @@ function App() {
             <Route exact path="/tasks">
               {tasks.map((task) => {
                 switch(task.type) {
-                  case 1: return <SimpleTask id={task.id} content={task.content} complete={task.complete} onTaskFinished={onTaskFinished} />
-                  // case 1: return <CounterTask></CounterTask>
-                // break;
+                  case 1: return <SimpleTask 
+                    id={task.id} 
+                    content={task.content} 
+                    complete={task.complete} 
+                    onTaskFinished={onTaskFinished} 
+                  />
                   case 2: return <DeadlineTask 
                     id={task.id} 
                     content={task.content}
@@ -96,12 +99,20 @@ function App() {
                     onTaskFinished={onTaskFinished}  
                     onTaskTimeup={onTaskTimeup}
                   />
-                  case 3: return <CounterTask id={task.id} 
-                  content={task.content} 
-                  overallCount={task.overallCount}
-                  doneCount={task.doneCount}
-                  complete={task.complete}
-                  onTaskFinished={onTaskFinished} />
+                  case 3: return <CounterTask 
+                    id={task.id} 
+                    content={task.content} 
+                    overallCount={task.overallCount}
+                    doneCount={task.doneCount}
+                    complete={task.complete}
+                    onTaskFinished={onTaskFinished} 
+                  />
+                  case 4: return <MultistepTask 
+                    id={task.id}
+                    content={task.content}
+                    steps={task.steps}
+
+                  />
                 }
               })}
             </Route>

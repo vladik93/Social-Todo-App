@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import TaskWrapper from './TaskWrapper';
 
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -20,8 +21,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccordionActions from '@material-ui/core/AccordionActions';
 import DoneIcon from '@material-ui/icons/Done';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,44 +37,34 @@ const useStyles = makeStyles((theme) => ({
 
 function MultistepTask(props) {
     const classes = useStyles();
-    const [ expanded, setExpanded ] = React.useState(false);
 
     return (
         <div className={classes.root}>
-            <Grid container>
-                <Grid item xs={12} sm={6}>
-                    <Card variant="elevation" className={classes.card}>
-                        <CardHeader avatar={
-                                <Avatar src="/images/profiles/profile1.jpg"></Avatar>
-                            }
-                            title={new Date(Date.now()).toDateString()}
-                            subheader="Multistep Task"
-                        >    
-                        </CardHeader>
-
-                        <Accordion>
-                            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                                <Typography variant="body2">{props.title}</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <List>
-                                    {props.content.map((task) => (
-                                        <ListItem button>
-                                            <ListItemIcon>
-                                                <DoneIcon className={classes.doneIcon} />
-                                            </ListItemIcon>
-                                            <ListItemText primary={task.content} />
-                                        </ListItem>
-                                    ))} 
-                                </List>
-                            </AccordionDetails>
-                            <AccordionActions>
-                                <Button size="small">Delete</Button>
-                            </AccordionActions>
-                        </Accordion>
-                    </Card>
-                </Grid>
-            </Grid>
+            <TaskWrapper>
+                <CardHeader avatar={
+                        <Avatar src="/images/profiles/profile1.jpg"></Avatar>
+                    }
+                    title={new Date(Date.now()).toDateString()}
+                    subheader="Multistep Task"
+                >    
+                </CardHeader>
+                <CardContent>
+                    <Typography variant="body2">{props.content}</Typography>
+                </CardContent>
+                <Accordion>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <IconButton onClick={(e) => e.stopPropagation()}>
+                            <DeleteIcon />
+                        </IconButton>
+                        <IconButton onClick={(e) => e.stopPropagation()}>
+                            <EditIcon />
+                        </IconButton>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                                
+                    </AccordionDetails>
+                </Accordion>
+            </TaskWrapper>
         </div>
     )
 }
