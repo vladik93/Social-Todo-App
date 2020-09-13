@@ -37,11 +37,15 @@ function App() {
   }
 
   const initialState =  [
-    // {id: 1, type: 2, content: 'Save Mom from Exploding', startDate: createDateTime(7, 9, 2020, 20, 22, 0) , deadline: createDateTime(7, 9, 2020, 21, 49, 5) , complete: false, timeup: false },
+    {id: 1, type: 2, content: 'Save Mom from Exploding', startDate: createDateTime(7, 9, 2020, 20, 22, 0) , deadline: createDateTime(7, 9, 2020, 21, 49, 5) , complete: false, timeup: false },
     {id: 2, type: 1, content: 'Save Mom from Drowning', complete: false},
     {id: 3, type: 3, content: 'Eat Cat Nine Times', overallCount: 9, doneCount: 3, complete: false},
     {id: 4, type: 3, content: 'Kill enough zombies to end appocalypse. Then return home for **ssausage**', overallCount: 100, doneCount: 15, complete: false},
-    {id: 5, type: 4, content: 'Finish steps to world domination', steps: [{id: 1, task: 'Take over government'}, {id: 2, task: 'Proclaim dictatorship'}, {id: 3, task: 'Enjoy delicious shwarma'}]}
+    {id: 5, type: 4, content: 'Finish steps to world domination', steps: [
+      {id: 1, task: 'Take over government', complete: false}, 
+      {id: 2, task: 'Proclaim dictatorship', complete: false}, 
+      {id: 3, task: 'Enjoy delicious shwarma', complete: false}
+    ]}
   ]
 
   const classes = useStyles();
@@ -68,6 +72,22 @@ function App() {
       } 
     }))
   }
+
+  const onTaskStepToggle = (id, step) => {
+    setTask(tasks.map((task) => {
+      if(task.id === id) {
+        task.steps.map((step) => {
+          if(step.id === step) {
+            return { ...step, task: 'Hello'}
+          } else {
+            return task;
+          }
+        })
+      } else {
+        return task;
+      }
+    }))
+  };
 
   return (
     <Router>
@@ -111,7 +131,7 @@ function App() {
                     id={task.id}
                     content={task.content}
                     steps={task.steps}
-
+                    onTaskStepToggle={onTaskStepToggle}
                   />
                 }
               })}
