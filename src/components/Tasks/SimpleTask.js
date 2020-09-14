@@ -55,9 +55,9 @@ function SimpleTask(props) {
                     <IconButton>
                         <DeleteIcon />
                     </IconButton>
-                    <IconButton>
+                    {/* <IconButton>
                         <EditIcon />
-                    </IconButton>
+                    </IconButton> */}
                 </CardActions>
             </TaskWrapper>
         </div>

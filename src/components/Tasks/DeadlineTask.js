@@ -129,9 +129,9 @@ function DeadlineTask(props) {
                         <IconButton>
                             <DeleteIcon />
                         </IconButton>
-                        <IconButton>
+                        {/* <IconButton>
                             <EditIcon />
-                        </IconButton>
+                        </IconButton> */}
                     </AccordionSummary>
                     <AccordionDetails>
                         <List>

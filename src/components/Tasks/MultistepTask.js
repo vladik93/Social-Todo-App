@@ -14,8 +14,10 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import EditIcon from '@material-ui/icons/Edit';
 import Typography from '@material-ui/core/Typography';
 
@@ -69,21 +71,24 @@ function MultistepTask(props) {
                         <IconButton onClick={(e) => e.stopPropagation()}>
                             <DeleteIcon />
                         </IconButton>
-                        <IconButton onClick={(e) => e.stopPropagation()}>
+                        {/* <IconButton onClick={(e) => e.stopPropagation()}>
                             <EditIcon />
-                        </IconButton>
+                        </IconButton> */}
                     </AccordionSummary>
                     <AccordionDetails>
                         <List>
                             {props.steps.map((step) => (
                                 <ListItem button onClick={onTaskStepClick.bind(this, props.id, step.id)}>
+                                    <ListItemIcon>
+                                        <AssignmentIcon />
+                                    </ListItemIcon>
                                     <ListItemText primary={step.task} style={{textDecoration: step.complete ? 'line-through' : 'none'}} />
-                                    <IconButton edge="end">
+                                    {/* <IconButton edge="end" onClick={(e) => e.stopPropagation()}>
                                         <DeleteIcon />
                                     </IconButton>
-                                    <IconButton edge="end">
+                                    <IconButton edge="end" onClick={(e) => e.stopPropagation()}> 
                                             <EditIcon />
-                                    </IconButton>
+                                    </IconButton> */}
                                 </ListItem>
                             ))}
                         </List>

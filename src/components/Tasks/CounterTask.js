@@ -112,9 +112,9 @@ function CounterTask(props) {
                     <IconButton>
                         <DeleteIcon />
                     </IconButton>
-                    <IconButton>
+                    {/* <IconButton>
                         <EditIcon />
-                    </IconButton>
+                    </IconButton> */}
                 </CardActions>
                 {/* <Accordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
