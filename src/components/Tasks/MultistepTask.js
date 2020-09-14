@@ -48,6 +48,12 @@ function MultistepTask(props) {
         }
     }
 
+    const onDeleteClick = (id) => (e) => {
+        e.stopPropagation();
+        props.onTaskDelete(id);
+
+    }
+
     useEffect(() => {
         checkAllStepsComplete();
         console.log(props);
@@ -68,7 +74,7 @@ function MultistepTask(props) {
                 </CardContent>
                 <Accordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <IconButton onClick={(e) => e.stopPropagation()}>
+                        <IconButton onClick={onDeleteClick(props.id)}>
                             <DeleteIcon />
                         </IconButton>
                         {/* <IconButton onClick={(e) => e.stopPropagation()}>

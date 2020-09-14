@@ -89,6 +89,13 @@ function App() {
     }))
   };
 
+  const onTaskDelete = (id_param) => {
+    setTask(tasks.filter((x) => x.id !== id_param)
+    .map((task) => {
+      return task;
+    }))
+  }
+
 
   useEffect(() => {
 
@@ -141,6 +148,7 @@ function App() {
                     complete={task.complete}
                     onTaskStepToggle={onTaskStepToggle}
                     onTaskFinished={onTaskFinished}
+                    onTaskDelete={onTaskDelete}
                   />
                 }
               })}
