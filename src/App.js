@@ -41,7 +41,7 @@ function App() {
     {id: 2, type: 1, content: 'Save dad from Drowning', complete: false},
     {id: 3, type: 3, content: 'Eat Cat Nine Times', overallCount: 9, doneCount: 3, complete: false},
     {id: 4, type: 3, content: 'Kill enough zombies to end appocalypse. Then return home for **ssausage**', overallCount: 100, doneCount: 15, complete: false},
-    {id: 5, type: 4, content: 'Finish steps to world domination', steps: [
+    {id: 5, type: 4, content: 'Finish steps to world domination', complete: false, steps: [
       {id: 1, task: 'Take over government', complete: false}, 
       {id: 2, task: 'Proclaim dictatorship', complete: false}, 
       {id: 3, task: 'Enjoy delicious shwarma', complete: false}
@@ -91,10 +91,10 @@ function App() {
 
 
   useEffect(() => {
-    console.log(tasks);
+
   }, [tasks])
   
-
+  
 
   return (
     <Router>
@@ -138,7 +138,9 @@ function App() {
                     id={task.id}
                     content={task.content}
                     steps={task.steps}
+                    complete={task.complete}
                     onTaskStepToggle={onTaskStepToggle}
+                    onTaskFinished={onTaskFinished}
                   />
                 }
               })}

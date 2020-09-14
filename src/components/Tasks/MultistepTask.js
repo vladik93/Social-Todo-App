@@ -35,6 +35,22 @@ function MultistepTask(props) {
         props.onTaskStepToggle(id, step);
     }
 
+
+    const checkAllStepsComplete = () => {
+        let result = props.steps.every(x => x.complete);
+
+        if(result) {
+            props.onTaskFinished(props.id, true);
+        } else {
+            props.onTaskFinished(props.id, false);
+        }
+    }
+
+    useEffect(() => {
+        checkAllStepsComplete();
+        console.log(props);
+    }, [props.steps])
+
     return (
         <div className={classes.root}>
             <TaskWrapper>
@@ -46,7 +62,7 @@ function MultistepTask(props) {
                 >    
                 </CardHeader>
                 <CardContent>
-                    <Typography variant="body2">{props.content}</Typography>
+                    <Typography variant="body2" style={{textDecoration: props.complete ? 'line-through' : 'none'}}>{props.content}</Typography>
                 </CardContent>
                 <Accordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
