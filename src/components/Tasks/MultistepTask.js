@@ -60,8 +60,8 @@ function MultistepTask(props) {
                     <AccordionDetails>
                         <List>
                             {props.steps.map((step) => (
-                                <ListItem button>
-                                    <ListItemText primary={step.task} onClick={onTaskStepClick.bind(this, props.id, step.id)} />
+                                <ListItem button onClick={onTaskStepClick.bind(this, props.id, step.id)}>
+                                    <ListItemText primary={step.task} style={{textDecoration: step.complete ? 'line-through' : 'none'}} />
                                     <IconButton edge="end">
                                         <DeleteIcon />
                                     </IconButton>
