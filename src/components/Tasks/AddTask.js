@@ -1,17 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/inputLabel';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import TaskWrapper from './TaskWrapper';
 
-// Task Types
-import SimpleTask from './BackupComps/TaskTypes/SimpleTask';
-import CounterTask from './BackupComps/TaskTypes/CounterTask';
-import DeadlineTask from './BackupComps/TaskTypes/DeadlineTask';
-import MultistepTask from './BackupComps/TaskTypes/MultistepTask';
+import CardHeader from '@material-ui/core/CardHeader';
+import MobileStepper from '@material-ui/core/MobileStepper';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -20,45 +13,58 @@ const useStyles = makeStyles((theme) => ({
 function AddTask(props) {
     const classes = useStyles();
     const [ taskType, setTaskType ] = useState(1);
+    const [ activeStep, setActiveStep ] = useState(0);
+    const maxSteps = 4;
 
-
-
- 
-
-    const onCounterTask = (task, counter) => {
-        console.log(task, counter);
+    const fetchNextLabel = () => {
+        switch(activeStep) {
+            case 0: return 'Counter Task';
+            case 1: return 'Deadline Task';
+            case 2: return 'Multistep Task';
+        }
     }
 
-    const onDeadlineTask = (task, date, time) => {
-        console.log(task, date, time);
-    }
-
-    const onMultistepTask = (title, task) => {
-        console.log(title, task);
+    const fetchBackLabel = () => {
+        switch(activeStep) {
+            case 0: return 'Simple Task';
+            case 1: return 'Simple Task';
+        }
     }
 
     return (
         <div className={classes.root}>
-                <Grid container>
-                    <Grid item xs={12}>
-                        <FormControl fullWidth>
-                            <InputLabel>Task Type</InputLabel>
-                            <Select native variant="outlined" value={taskType} name="task_type" onChange={(e) => setTaskType(e.target.value)}>
-                                <option value={1}>Task</option>
-                                <option value={2}>Task w. Counter</option>
-                                <option value={3}>Task w. Deadline</option>
-                                <option value={4}>Task w. Multiple Steps</option>
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                </Grid>
-                {
-                    taskType == 1 ? <SimpleTask  /> : 
-                    taskType == 2 ? <CounterTask /> : 
-                    taskType == 3 ? <DeadlineTask /> :
-                    taskType == 4 ? <MultistepTask /> : null
+            <MobileStepper
+                steps={maxSteps}
+                position="static"
+                variant="dots"
+                activeStep={activeStep}
+                nextButton={
+                    <Button 
+                        size="small" 
+                        onClick={() => setActiveStep(activeStep + 1)}
+                        disabled={activeStep === maxSteps - 1}
+                        
+                    >
+                    {fetchNextLabel()}
+                    </Button>
                 }
-        </div> 
+                backButton={
+                    <Button 
+                        size="small" 
+                        onClick={() => setActiveStep(activeStep - 1)}
+                        disabled={activeStep === 0}
+                    >
+                    {fetchBackLabel()}
+                    </Button>
+                }
+            
+            
+            
+            
+            >
+            </MobileStepper>
+        </div>
+                
     )
 }
 
