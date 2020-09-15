@@ -92,6 +92,11 @@ function DeadlineTask(props) {
         props.onTaskFinished(id, true);
     }
 
+    const onDeleteClick = (id) => (e) => {
+        e.stopPropagation();
+        props.onTaskDelete(id);
+    }
+
     return (
         
         <div className={classes.root}>
@@ -126,7 +131,7 @@ function DeadlineTask(props) {
                 </CardContent>
                 <Accordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <IconButton>
+                        <IconButton onClick={onDeleteClick(props.id)}>
                             <DeleteIcon />
                         </IconButton>
                         {/* <IconButton>

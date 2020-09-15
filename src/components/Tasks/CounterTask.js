@@ -73,6 +73,10 @@ function CounterTask(props) {
         let result = 100 * (doneCount / overallCount);
         return result.toFixed(0);
     }
+
+    const onDeleteClick = (id) => {    
+        props.onTaskDelete(id);
+    }
  
     useEffect(() => {
         if(doneCount >= overallCount) {
@@ -109,7 +113,7 @@ function CounterTask(props) {
                     <LinearProgress variant="determinate" value={calcProgressPercentage()} className={classes.progressBar}  color="primary" />
                 </CardContent>
                 <CardActions>
-                    <IconButton>
+                    <IconButton onClick={onDeleteClick.bind(this, props.id)}>
                         <DeleteIcon />
                     </IconButton>
                     {/* <IconButton>

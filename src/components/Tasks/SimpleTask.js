@@ -37,6 +37,10 @@ function SimpleTask(props) {
         console.log(props.complete)
     }
 
+    const onDeleteClick = (id) => {
+        props.onTaskDelete(id);
+    }
+
     return (
         <div className={classes.root}>
             <TaskWrapper>
@@ -52,12 +56,9 @@ function SimpleTask(props) {
                     <Typography variant="body2">{props.status}</Typography>
                 </CardContent>
                 <CardActions>
-                    <IconButton>
+                    <IconButton onClick={onDeleteClick.bind(this, props.id)}>
                         <DeleteIcon />
                     </IconButton>
-                    {/* <IconButton>
-                        <EditIcon />
-                    </IconButton> */}
                 </CardActions>
             </TaskWrapper>
         </div>

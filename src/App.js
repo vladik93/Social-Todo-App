@@ -92,7 +92,7 @@ function App() {
   const onTaskDelete = (id_param) => {
     setTask(tasks.filter((x) => x.id !== id_param)
     .map((task) => {
-      return task;
+      return {...task}; // spread operator maybe not needed here
     }))
   }
 
@@ -120,7 +120,8 @@ function App() {
                     id={task.id} 
                     content={task.content} 
                     complete={task.complete} 
-                    onTaskFinished={onTaskFinished} 
+                    onTaskFinished={onTaskFinished}
+                    onTaskDelete={onTaskDelete} 
                   />
                   case 2: return <DeadlineTask 
                     id={task.id} 
@@ -132,6 +133,7 @@ function App() {
                     timeup={task.timeup}
                     onTaskFinished={onTaskFinished}  
                     onTaskTimeup={onTaskTimeup}
+                    onTaskDelete={onTaskDelete}
                   />
                   case 3: return <CounterTask 
                     id={task.id} 
@@ -139,7 +141,8 @@ function App() {
                     overallCount={task.overallCount}
                     doneCount={task.doneCount}
                     complete={task.complete}
-                    onTaskFinished={onTaskFinished} 
+                    onTaskFinished={onTaskFinished}
+                    onTaskDelete={onTaskDelete} 
                   />
                   case 4: return <MultistepTask 
                     id={task.id}
