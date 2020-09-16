@@ -100,6 +100,7 @@ function App() {
     setTask([...tasks, {id: tasks.length + 1, type: 1, content: content_param, complete: false}]);
   }
 
+  
 
   useEffect(() => {
     console.log(tasks);
