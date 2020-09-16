@@ -6,7 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 
 function CardWrappper(props) {
-    console.log(props.children);
     return (
         <Card variant="outlined">
             <CardHeader  

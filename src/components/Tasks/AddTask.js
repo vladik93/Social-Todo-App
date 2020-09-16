@@ -42,7 +42,7 @@ function AddTask(props) {
 
     const fetchTaskType = () => {
         switch(activeStep) {
-            case 0: return <SimpleForm />
+            case 0: return <SimpleForm addTaskToState={props.addTaskToState}/>
             case 1: return <CounterForm />
             case 2: return <DeadlineForm />
             case 3: return <MultistepForm />

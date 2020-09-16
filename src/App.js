@@ -96,9 +96,13 @@ function App() {
     }))
   }
 
+  const addTaskToState = (type, content_param) => {
+    setTask([...tasks, {id: tasks.length + 1, type: 1, content: content_param, complete: false}]);
+  }
+
 
   useEffect(() => {
-
+    console.log(tasks);
   }, [tasks])
   
   
@@ -157,7 +161,7 @@ function App() {
               })}
             </Route>
             <Route exact path="/add_task">
-              <AddTask />
+              <AddTask addTaskToState={addTaskToState} />
             </Route>
             <Route exact path="/logout">
               <Login />
