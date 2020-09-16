@@ -2,8 +2,14 @@ import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TaskWrapper from './TaskWrapper';
 
+import SimpleForm from './NewTaskForms/SimpleForm';
+import CounterForm from './NewTaskForms/CounterForm';
+import DeadlineForm from './NewTaskForms/DeadlineForm';
+import MultistepForm from './NewTaskForms/MultistepForm';
+
 import CardHeader from '@material-ui/core/CardHeader';
 import MobileStepper from '@material-ui/core/MobileStepper';
+import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,17 +24,29 @@ function AddTask(props) {
 
     const fetchNextLabel = () => {
         switch(activeStep) {
-            case 0: return 'Counter Task';
-            case 1: return 'Deadline Task';
-            case 2: return 'Multistep Task';
+            case 0: return 'Counter';
+            case 1: return 'Deadline';
+            case 2: return 'Multistep';
+            default: return 'Simple'
         }
     }
 
     const fetchBackLabel = () => {
         switch(activeStep) {
-            case 0: return 'Simple Task';
-            case 1: return 'Simple Task';
+            case 1: return 'Simple';
+            case 2: return 'Counter';
+            case 3: return 'Deadline';
+            default: return 'Simple';
         }
+    }
+
+    const fetchTaskType = () => {
+        switch(activeStep) {
+            case 0: return <SimpleForm />
+            case 1: return <CounterForm />
+            case 2: return <DeadlineForm />
+            case 3: return <MultistepForm />
+        } 
     }
 
     return (
@@ -57,12 +75,10 @@ function AddTask(props) {
                     {fetchBackLabel()}
                     </Button>
                 }
-            
-            
-            
-            
             >
             </MobileStepper>
+
+            {fetchTaskType()}
         </div>
                 
     )
