@@ -16,12 +16,16 @@ import AddTask from './components/Tasks/AddTask';
 import Container from '@material-ui/core/Container';
 
 import { makeStyles } from '@material-ui/core/styles';
+import { AppBar } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
     offset: theme.mixins.toolbar,
     container: {
       minHeight: '450px'
+    },
+    appBar: {
+      
     }
 }));
 
@@ -119,47 +123,48 @@ function App() {
               <Login />
             </Route>
             <Route exact path="/tasks">
-              {tasks.map((task) => {
-                switch(task.type) {
-                  case 1: return <SimpleTask 
-                    id={task.id} 
-                    content={task.content} 
-                    complete={task.complete} 
-                    onTaskFinished={onTaskFinished}
-                    onTaskDelete={onTaskDelete} 
-                  />
-                  case 2: return <DeadlineTask 
-                    id={task.id} 
-                    content={task.content}
-                    startDate={task.startDate} 
-                    deadline={task.deadline} 
-                    complete={task.complete} 
-                    status={task.status} 
-                    timeup={task.timeup}
-                    onTaskFinished={onTaskFinished}  
-                    onTaskTimeup={onTaskTimeup}
-                    onTaskDelete={onTaskDelete}
-                  />
-                  case 3: return <CounterTask 
-                    id={task.id} 
-                    content={task.content} 
-                    overallCount={task.overallCount}
-                    doneCount={task.doneCount}
-                    complete={task.complete}
-                    onTaskFinished={onTaskFinished}
-                    onTaskDelete={onTaskDelete} 
-                  />
-                  case 4: return <MultistepTask 
-                    id={task.id}
-                    content={task.content}
-                    steps={task.steps}
-                    complete={task.complete}
-                    onTaskStepToggle={onTaskStepToggle}
-                    onTaskFinished={onTaskFinished}
-                    onTaskDelete={onTaskDelete}
-                  />
-                }
-              })}
+                {tasks.map((task) => {
+                  switch(task.type) {
+                    case 1: return <SimpleTask 
+                      id={task.id} 
+                      content={task.content} 
+                      complete={task.complete} 
+                      onTaskFinished={onTaskFinished}
+                      onTaskDelete={onTaskDelete} 
+                    />
+                    case 2: return <DeadlineTask 
+                      id={task.id} 
+                      content={task.content}
+                      startDate={task.startDate} 
+                      deadline={task.deadline} 
+                      complete={task.complete} 
+                      status={task.status} 
+                      timeup={task.timeup}
+                      onTaskFinished={onTaskFinished}  
+                      onTaskTimeup={onTaskTimeup}
+                      onTaskDelete={onTaskDelete}
+                    />
+                    case 3: return <CounterTask 
+                      id={task.id} 
+                      content={task.content} 
+                      overallCount={task.overallCount}
+                      doneCount={task.doneCount}
+                      complete={task.complete}
+                      onTaskFinished={onTaskFinished}
+                      onTaskDelete={onTaskDelete} 
+                    />
+                    case 4: return <MultistepTask 
+                      id={task.id}
+                      content={task.content}
+                      steps={task.steps}
+                      complete={task.complete}
+                      onTaskStepToggle={onTaskStepToggle}
+                      onTaskFinished={onTaskFinished}
+                      onTaskDelete={onTaskDelete}
+                    />
+                  }
+                })}
+
             </Route>
             <Route exact path="/add_task">
               <AddTask addTaskToState={addTaskToState} />
@@ -169,9 +174,10 @@ function App() {
             </Route>
           </Switch>
         </Container>
-        <Footer />
+        <Footer pos="fixed" />
       </div>
     </Router>
+    
   );
 }
 
