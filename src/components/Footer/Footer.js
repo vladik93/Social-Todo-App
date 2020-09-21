@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import AddIcon from '@material-ui/icons/Add'
 import Fab from '@material-ui/core/Fab'
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     appbar: {
@@ -31,9 +32,20 @@ function Footer(props) {
 
             <AppBar position={props.position} style={{top: "auto", bottom: 0}} className={classes.appbar}>
                 <Toolbar className={classes.toolbar}>
-                <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-                    <AddIcon />
-                </Fab>
+                <Router> 
+                    <Switch>
+                        <Route exact path="/" > 
+                        haha 
+                        </Route>
+
+                        <Route path="/">
+                            <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+                                <AddIcon />
+                            </Fab>
+                        </Route>
+                    </Switch>
+                    
+                </Router>
 
                 </Toolbar>
             </AppBar>

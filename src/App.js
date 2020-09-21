@@ -17,6 +17,8 @@ import Container from '@material-ui/core/Container';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar } from '@material-ui/core';
+import { DesktopWindowsRounded } from '@material-ui/icons';
+import Friends from './components/Friends/Friends';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,9 +30,40 @@ const useStyles = makeStyles((theme) => ({
       
     }
 }));
+var previusLocation;
+
+
+
+
+
+
+const onLocationChange = () => {
+  console.log("Location changed.");
+};
 
 
 function App() { 
+
+
+const check = () =>
+{
+  
+  var currentLocation = window.location.pathname;
+  console.log(currentLocation);
+
+  if(currentLocation != previusLocation)
+  {
+      onLocationChange();
+  }
+  
+
+
+  previusLocation = currentLocation;
+}
+
+  useEffect(() => {
+    setTimeout(check, 100);
+  });
 
   const createDate = (day, month, year,) => {
     //Month starts from 0 (Jan = 0, Dec = 11)
@@ -171,6 +204,9 @@ function App() {
             </Route>
             <Route exact path="/logout">
               <Login />
+            </Route>
+            <Route exact path="/friends">
+                <Friends/>
             </Route>
           </Switch>
         </Container>

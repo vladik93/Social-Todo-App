@@ -8,6 +8,7 @@ import Avatar from '@material-ui/core/Avatar';
 function CardWrappper(props) {
     return (
         <Card variant="outlined">
+             
             <CardHeader  
                 avatar={
                     <Avatar src="/images/profiles/profile1.jpg"></Avatar>
