@@ -15,6 +15,10 @@ const useStyles = makeStyles((theme) => ({
     },
     text: {
         
+    },
+    avatar: { 
+        width: theme.spacing(12),
+        height: theme.spacing(12)
     }
 }));
 
@@ -26,7 +30,7 @@ function Friend(props){
             <Card className={classes.card}>
                 <CardActionArea>
                     <CardHeader
-                    avatar={ <Avatar src={props.src}/> } 
+                    avatar={ <Avatar src={props.src} className={classes.avatar} /> } 
                     title={props.name}
                     subheader="header"
                     />
