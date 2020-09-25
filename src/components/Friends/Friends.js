@@ -1,8 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Paper } from '@material-ui/core';
+import { Button, Paper, Typography, Card, TextField, Container} from '@material-ui/core';
 import { Height } from '@material-ui/icons';
 import Friend from './Friend';
+import { positions } from '@material-ui/system';
 
 
 
@@ -24,9 +25,15 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1
     },
     holder: {
-        width: "90%",
-        height: "90%"
+        backgroundColor: "rgb(245,250,250)"
     },
+    search: {
+
+        marginLeft: theme.spacing(3)
+    },
+    friends: { 
+        marginTop: theme.spacing(2)
+    }
 
 }));
 
@@ -34,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
 
 function Friends(props){
 
+    const changed = (change) => {
+        console.log(change.target.value)
+    }
+
+    const classes = useStyles();
 
     const friendBase = [];
     const friends = [];
@@ -50,9 +62,19 @@ function Friends(props){
 
     return (
         <div className="root">
-            <Paper elevation={3} className="holder">
-                {friends}
-            </Paper>
+            <Typography variant="h3">
+                Friends ({+ props.friendAmount }) : 
+            </Typography>
+            <Card className={classes.holder}>
+   
+                <TextField onChange={changed} className={classes.search}  label="Search" type="search" />
+
+                <Container className={classes.friends}>
+                    {friends}
+                </Container>
+                
+     
+            </Card>
         </div>
         
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Avatar, Card, CardActionArea, CardHeader, Container, Typography } from '@material-ui/core';
+import { Avatar, Card, CardActionArea, CardHeader, Container, Typography, Link } from '@material-ui/core';
 import { InsertLinkRounded } from '@material-ui/icons';
 
 
@@ -10,15 +10,18 @@ const useStyles = makeStyles((theme) => ({
     },
     card: {
         marginTop: theme.spacing(2),
-        marginRight: theme.spacing(1)
-        
+        marginRight: theme.spacing(1),
+        marginLeft: theme.spacing(1)
     },
     text: {
         
     },
     avatar: { 
-        width: theme.spacing(12),
-        height: theme.spacing(12)
+        width: theme.spacing(9),
+        height: theme.spacing(9)
+    },
+    name: {
+        fontSize: "2rem"
     }
 }));
 
@@ -27,11 +30,17 @@ function Friend(props){
     return (
         <div>
             
-            <Card className={classes.card}>
+            <Card variant="outlined" className={classes.card}>
                 <CardActionArea>
                     <CardHeader
                     avatar={ <Avatar src={props.src} className={classes.avatar} /> } 
-                    title={props.name}
+                    title={
+                    <Link 
+                    className={classes.name}>
+                        <Typography variant="h6" noWrap={true}> 
+                            {props.name} 
+                        </Typography>    
+                    </Link>}
                     subheader="header"
                     />
                  </CardActionArea>

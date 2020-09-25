@@ -206,7 +206,7 @@ const check = () =>
               <Login />
             </Route>
             <Route exact path="/friends">
-                <Friends/>
+                <Friends friendAmount={10}/>
             </Route>
           </Switch>
         </Container>
