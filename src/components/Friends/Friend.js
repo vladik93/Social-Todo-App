@@ -11,7 +11,8 @@ const useStyles = makeStyles((theme) => ({
     card: {
         marginTop: theme.spacing(2),
         marginRight: theme.spacing(1),
-        marginLeft: theme.spacing(1)
+        marginLeft: theme.spacing(1),
+        marginBottom: theme.spacing(1)
     },
     text: {
         

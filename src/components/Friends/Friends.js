@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1
     },
     holder: {
-        backgroundColor: "rgb(245,250,250)"
+        backgroundColor: "rgb(245,250,250)",
+        marginBottom: theme.spacing(3)
     },
     search: {
 
@@ -80,10 +81,10 @@ function Friends(props){
     }
 
     
-
+    var init = false;
     
 
-    
+   
 
     const classes = useStyles();
 
@@ -91,14 +92,18 @@ function Friends(props){
 
     $(function() 
     {
-        
-        for(let a = 0; a < 10; a++)
+        if(!init)
         {
-            friendBase.push(new FriendClass(a, getRandomName(), "https://sun6-14.userapi.com/7a7_Zwd42_g0aqUAI_QlnftjEHHVA5IR289znQ/eRJGn-p8Dng.jpg"))
-            friends.push( <Friend key={a} src={friendBase[a].ImageURL} header={getRandomInt(100) + " common friends"} name={friendBase[a].fullName} /> );
 
+            for(let a = 0; a < 10; a++)
+            {
+                friendBase.push(new FriendClass(a, getRandomName(), "https://sun6-14.userapi.com/7a7_Zwd42_g0aqUAI_QlnftjEHHVA5IR289znQ/eRJGn-p8Dng.jpg"))
+                friends.push( <Friend key={a} src={friendBase[a].ImageURL} header={getRandomInt(100) + " common friends"} name={friendBase[a].fullName} /> );
+
+            }
+            setFriends(friends);
+            init = true;
         }
-        setFriends(friends);
     });
     
     

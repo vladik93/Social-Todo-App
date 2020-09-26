@@ -32,20 +32,14 @@ function Footer(props) {
 
             <AppBar position={props.position} style={{top: "auto", bottom: 0}} className={classes.appbar}>
                 <Toolbar className={classes.toolbar}>
-                <Router> 
-                    <Switch>
-                        <Route exact path="/" > 
-                        haha 
-                        </Route>
+                {
+                    (props.isPlus) ? 
+                    (<Fab color="secondary" aria-label="add" className={classes.fabButton}>
+                        <AddIcon />
+                    </Fab>) : null
+                }
+                
 
-                        <Route path="/">
-                            <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-                                <AddIcon />
-                            </Fab>
-                        </Route>
-                    </Switch>
-                    
-                </Router>
 
                 </Toolbar>
             </AppBar>

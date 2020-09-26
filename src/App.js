@@ -2,6 +2,7 @@
 import './App.css';
 
 import React, { useState, useEffect} from 'react';
+import $ from 'jquery'
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -37,34 +38,44 @@ var previusLocation;
 
 
 
-const onLocationChange = () => {
-  console.log("Location changed.");
-};
+
 
 
 function App() { 
 
+  const [plus, setPlus ] = useState();
 
-const check = () =>
-{
-  
-  var currentLocation = window.location.pathname;
-  console.log(currentLocation);
-
-  if(currentLocation != previusLocation)
+  const check = () =>
   {
-      onLocationChange();
+    
+    var currentLocation = window.location.pathname;
+
+
+    if(currentLocation != previusLocation)
+    {
+        onLocationChange(currentLocation);
+    }
+    
+
+
+    previusLocation = currentLocation;
   }
+
+  const onLocationChange = (loc) => {
+    console.log("Location is: " + loc);
+    if(loc != "/")
+    {
+      setPlus(true);
+    }
+    else
+    {
+      setPlus(false);
+    }
+    console.log("Location changed.");
+  };
+
+
   
-
-
-  previusLocation = currentLocation;
-}
-
-  useEffect(() => {
-    setTimeout(check, 100);
-  });
-
   const createDate = (day, month, year,) => {
     //Month starts from 0 (Jan = 0, Dec = 11)
     return new Date(year, (month-1), day);
@@ -139,10 +150,11 @@ const check = () =>
 
   
 
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks])
   
+
+  
+
+    
   
 
   return (
@@ -153,7 +165,7 @@ const check = () =>
         <Container maxWidth="sm" className={classes.container}>
           <Switch>
             <Route exact path="/">
-              <Login />
+              <Login plusFunc={setPlus} />
             </Route>
             <Route exact path="/tasks">
                 {tasks.map((task) => {
@@ -210,7 +222,7 @@ const check = () =>
             </Route>
           </Switch>
         </Container>
-        <Footer pos="fixed" />
+        <Footer pos="fixed" isPlus={plus} />
       </div>
     </Router>
     

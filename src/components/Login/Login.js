@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
@@ -10,6 +10,7 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
+import { getThemeProps } from '@material-ui/styles';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,8 +40,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Login() {
+
+
+function Login(props) {
     const classes = useStyles();
+
+    useEffect(() => {
+        props.plusFunc(false);
+
+    });
     return (
         <div className={classes.root}>
             <form noValidate>
