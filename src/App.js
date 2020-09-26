@@ -20,6 +20,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppBar } from '@material-ui/core';
 import { DesktopWindowsRounded } from '@material-ui/icons';
 import Friends from './components/Friends/Friends';
+import TasksHolder from './components/Tasks/TasksHolder';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -168,6 +169,7 @@ function App() {
               <Login plusFunc={setPlus} />
             </Route>
             <Route exact path="/tasks">
+              <TasksHolder plusFunc={setPlus}>
                 {tasks.map((task) => {
                   switch(task.type) {
                     case 1: return <SimpleTask 
@@ -209,6 +211,7 @@ function App() {
                     />
                   }
                 })}
+              </TasksHolder>
 
             </Route>
             <Route exact path="/add_task">
