@@ -58,7 +58,7 @@ const getRandomName = () =>
         return name + " " + lName;
     }
 
-
+    var init = false;
 
 function Friends(props){
 
@@ -81,7 +81,7 @@ function Friends(props){
     }
 
     
-    var init = false;
+    
     
 
    
@@ -94,7 +94,7 @@ function Friends(props){
     {
         if(!init)
         {
-
+            
             for(let a = 0; a < 10; a++)
             {
                 friendBase.push(new FriendClass(a, getRandomName(), "https://sun6-14.userapi.com/7a7_Zwd42_g0aqUAI_QlnftjEHHVA5IR289znQ/eRJGn-p8Dng.jpg"))
