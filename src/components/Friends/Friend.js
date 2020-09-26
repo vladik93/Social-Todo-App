@@ -41,7 +41,7 @@ function Friend(props){
                             {props.name} 
                         </Typography>    
                     </Link>}
-                    subheader="header"
+                    subheader={props.header}
                     />
                  </CardActionArea>
             
