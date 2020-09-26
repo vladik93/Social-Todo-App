@@ -6,7 +6,7 @@ import AddIcon from '@material-ui/icons/Add'
 import Fab from '@material-ui/core/Fab'
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import { Button, IconButton, Typography } from '@material-ui/core';
-
+import './FooterStyle.css'
 import {Person, Chat} from '@material-ui/icons';
 
 
