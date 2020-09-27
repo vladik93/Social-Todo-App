@@ -120,7 +120,6 @@ function Friends(props){
     useEffect(() => 
     {
         var fbase = props.friendBase;
-        var temp = []
         // friends = [];
         if(friends.length != 10)
         {

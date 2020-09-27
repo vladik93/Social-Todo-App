@@ -203,7 +203,7 @@ function App() {
             <Route exact path="/">
               <Login plusFunc={setPlus} />
             </Route>
-            <Route exact path="/tasks">
+            <Route exact path="/my_tasks">
               <TasksHolder plusFunc={setPlus}>
                 {tasks.map((task) => {
                   switch(task.type) {

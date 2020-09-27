@@ -62,7 +62,7 @@ function Navbar({history}) {
 
                     <Typography style={{ cursor: 'pointer' }} onClick={() => {history.push('/');}} variant="h6" className={classes.title}>
                         
-                        SOCIAL TODO TEST 123 123 123 123
+                        Social Todo
                        
                     </Typography>
                     

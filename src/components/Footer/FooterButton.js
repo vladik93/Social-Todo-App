@@ -49,7 +49,7 @@ function FooterButton(props)
                 history.push("messages");
                 break;
             case Buttons.Tasks:
-                history.push("tasks");
+                history.push("my_tasks");
                 break;
             case Buttons.Settings: 
                 history.push("settings");

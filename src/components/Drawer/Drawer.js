@@ -57,7 +57,7 @@ function DrawerComponent(props) {
             <Divider />
             <List>
                 {[
-                    {name: 'Tasks', link: 'tasks'}, 
+                    {name: 'Tasks', link: 'my_tasks'}, 
                     {name: 'Finished Tasks', link: 'finished_tasks'}, 
                     {name: 'Starred Tasks', link: 'starred_tasks' },
                 ].map((item, index) => (
