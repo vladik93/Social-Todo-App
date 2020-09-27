@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Paper, Typography, Card, TextField, Container} from '@material-ui/core';
 import { Height } from '@material-ui/icons';
@@ -88,23 +88,20 @@ function Friends(props){
 
     const classes = useStyles();
 
+    useEffect(() => 
+    {
+        for(let a = 0; a < 10; a++)
+        {
+            friendBase.push(new FriendClass(a, getRandomName(), "https://sun6-14.userapi.com/7a7_Zwd42_g0aqUAI_QlnftjEHHVA5IR289znQ/eRJGn-p8Dng.jpg"))
+            friends.push( <Friend key={a} src={friendBase[a].ImageURL} header={getRandomInt(100) + " common friends"} name={friendBase[a].fullName} /> );
+
+        }
+        setFriends(friends);
+
+    });
     
 
-    $(function() 
-    {
-        if(!init)
-        {
-            
-            for(let a = 0; a < 10; a++)
-            {
-                friendBase.push(new FriendClass(a, getRandomName(), "https://sun6-14.userapi.com/7a7_Zwd42_g0aqUAI_QlnftjEHHVA5IR289znQ/eRJGn-p8Dng.jpg"))
-                friends.push( <Friend key={a} src={friendBase[a].ImageURL} header={getRandomInt(100) + " common friends"} name={friendBase[a].fullName} /> );
-
-            }
-            setFriends(friends);
-            init = true;
-        }
-    });
+    
     
     
 
