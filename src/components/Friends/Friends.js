@@ -75,7 +75,7 @@ function Friends(props){
         {
             
             if(val == "" || val==null || friendBase[a].fullName.toLowerCase().includes(val))
-                friends.push( <Friend key={a} src={friendBase[a].ImageURL} header={getRandomInt(100) + " common friends"} name={friendBase[a].fullName} /> );
+                friends.push( <Friend key={a} src={friendBase[a].ImageURL} header={friendBase[a].commonFriends + " common friends"} name={friendBase[a].fullName} /> );
         }
         setFriends(friends);
     }
@@ -90,11 +90,10 @@ function Friends(props){
 
     useEffect(() => 
     {
+        friendBase = props.friendBase;
         for(let a = 0; a < 10; a++)
         {
-            friendBase.push(new FriendClass(a, getRandomName(), "https://sun6-14.userapi.com/7a7_Zwd42_g0aqUAI_QlnftjEHHVA5IR289znQ/eRJGn-p8Dng.jpg"))
-            friends.push( <Friend key={a} src={friendBase[a].ImageURL} header={getRandomInt(100) + " common friends"} name={friendBase[a].fullName} /> );
-
+            friends.push( <Friend key={a} src={friendBase[a].ImageURL} header={ friendBase[a].commonFriends + " common friends"} name={friendBase[a].fullName} /> );
         }
         setFriends(friends);
 
@@ -103,7 +102,8 @@ function Friends(props){
 
     
     
-    
+    console.log("HEY ");
+    console.log(props.friendBase);    
 
     
 

@@ -23,6 +23,20 @@ import Friends from './components/Friends/Friends';
 import TasksHolder from './components/Tasks/TasksHolder';
 
 
+class FriendClass 
+{  //Pseudo class that will become useless once we have Server & Database 
+
+    constructor(friendID, fullName, ImageURL, commonFriends)
+    {
+        this.friendID = friendID;
+        this.fullName = fullName;
+        this.ImageURL = ImageURL;
+        this.commonFriends = commonFriends;
+        
+    }
+}
+
+
 const useStyles = makeStyles((theme) => ({
     offset: theme.mixins.toolbar,
     container: {
@@ -38,11 +52,31 @@ var previusLocation;
 
 
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+const getRandomName = () => 
+  {
+      //Two array that I copied from the internet :)) 
+      let firstName =  [ "Adam", "Alex", "Aaron", "Ben", "Carl", "Dan", "David", "Edward", "Fred", "Frank", "George", "Hal", "Hank", "Ike", "John", "Jack", "Joe", "Larry", "Monte", "Matthew", "Mark", "Nathan", "Otto", "Paul", "Peter", "Roger", "Roger", "Steve", "Thomas", "Tim", "Ty", "Victor", "Walter"];   
+    let lastName = [ "Anderson", "Ashwoon", "Aikin", "Bateman", "Bongard", "Bowers", "Boyd", "Cannon", "Cast", "Deitz", "Dewalt", "Ebner", "Frick", "Hancock", "Haworth", "Hesch", "Hoffman", "Kassing", "Knutson", "Lawless", "Lawicki", "Mccord", "McCormack", "Miller", "Myers", "Nugent", "Ortiz", "Orwig", "Ory", "Paiser", "Pak", "Pettigrew", "Quinn", "Quizoz", "Ramachandran", "Resnick", "Sagar", "Schickowski", "Schiebel", "Sellon", "Severson", "Shaffer", "Solberg", "Soloman", "Sonderling", "Soukup", "Soulis", "Stahl", "Sweeney", "Tandy", "Trebil", "Trusela", "Trussel", "Turco", "Uddin", "Uflan", "Ulrich", "Upson", "Vader", "Vail", "Valente", "Van Zandt", "Vanderpoel", "Ventotla", "Vogal", "Wagle", "Wagner", "Wakefield", "Weinstein", "Weiss", "Woo", "Yang", "Yates", "Yocum", "Zeaser", "Zeller", "Ziegler", "Bauer", "Baxster", "Casal", "Cataldi", "Caswell", "Celedon", "Chambers", "Chapman", "Christensen", "Darnell", "Davidson", "Davis", "DeLorenzo", "Dinkins", "Doran", "Dugelman", "Dugan", "Duffman", "Eastman", "Ferro", "Ferry", "Fletcher", "Fietzer", "Hylan", "Hydinger", "Illingsworth", "Ingram", "Irwin", "Jagtap", "Jenson", "Johnson", "Johnsen", "Jones", "Jurgenson", "Kalleg", "Kaskel", "Keller", "Leisinger", "LePage", "Lewis", "Linde", "Lulloff", "Maki", "Martin", "McGinnis", "Mills", "Moody", "Moore", "Napier", "Nelson", "Norquist", "Nuttle", "Olson", "Ostrander", "Reamer", "Reardon", "Reyes", "Rice", "Ripka", "Roberts", "Rogers", "Root", "Sandstrom", "Sawyer", "Schlicht", "Schmitt", "Schwager", "Schutz", "Schuster", "Tapia", "Thompson", "Tiernan", "Tisler" ];
+
+      let name = firstName[getRandomInt(firstName.length-1)];
+      let lName = lastName[getRandomInt(lastName.length-1)];
+      return name + " " + lName;
+  }
+
+
 
 
 
 
 function App() { 
+
+  var friendBase = [];
+  for(let a = 0; a < 10; a++)
+    friendBase.push(new FriendClass(a, getRandomName(), "https://sun6-14.userapi.com/7a7_Zwd42_g0aqUAI_QlnftjEHHVA5IR289znQ/eRJGn-p8Dng.jpg", getRandomInt(100)));
 
   const [plus, setPlus ] = useState();
 
@@ -221,7 +255,7 @@ function App() {
               <Login />
             </Route>
             <Route exact path="/friends">
-                <Friends friendAmount={10}/>
+                <Friends friendBase={friendBase} friendAmount={10}/>
             </Route>
           </Switch>
         </Container>
