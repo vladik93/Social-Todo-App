@@ -61,7 +61,7 @@ function Footer(props) {
                     />
 
                     <FooterButton
-                        text="Messages"
+                        text="Chat"
                         icon = {<Chat className={classes.icon}/>}
                         num={2}
                     />
