@@ -1,3 +1,29 @@
-#mes {
-    background-color: red;
+
+#btn1 
+{
+    left: 0;
+}
+
+#btn2
+{
+    left: 20%;
+}
+
+#btn3
+{
+    left: 40%;
+}
+
+#btn4
+{
+    left: 60%;
+}
+
+#btn5
+{
+    left: 80%;
+}
+#cont
+{
+    margin-bottom: 30px;
 }
