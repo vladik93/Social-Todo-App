@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import AddIcon from '@material-ui/icons/Add'
 import Fab from '@material-ui/core/Fab'
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Switch, Route, useHistory } from 'react-router-dom';
 import { Button, Container, IconButton, Typography } from '@material-ui/core';
 
 import {Person, Chat, Assignment, Settings, AccountCircle} from '@material-ui/icons';
@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Footer(props) {
     const classes = useStyles();
+    const history = useHistory();
     return (
         <div>
             <Toolbar />
@@ -81,7 +82,7 @@ function Footer(props) {
                         (props.isPlus) ?
                         
                         (
-                        <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+                        <Fab onClick={() => history.push("add_task")} color="secondary" aria-label="add" className={classes.fabButton}>
                             <AddIcon />
                         </Fab>) 
                         : null
