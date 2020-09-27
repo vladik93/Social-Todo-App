@@ -15,12 +15,7 @@ const useStyles = makeStyles((theme) => ({
         color: "white",
         textTransform: "none", 
         float: "none"
-    },
-    
-    icon: {
-        margin: "-30px",
-
-    },
+    }
 
 }));
 
@@ -29,6 +24,8 @@ function FooterButton(props)
 {
 
     const classes = useStyles();
+
+
     return ( 
 
         <Button className={classes.btns} id={"btn" + props.num}>

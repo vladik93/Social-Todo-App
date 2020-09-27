@@ -7,7 +7,7 @@ import Fab from '@material-ui/core/Fab'
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import { Button, Container, IconButton, Typography } from '@material-ui/core';
 
-import {Person, Chat} from '@material-ui/icons';
+import {Person, Chat, Assignment, Settings, AccountCircle} from '@material-ui/icons';
 import FooterButton from './FooterButton';
 
 
@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
         right: 0,
         margin: '0 auto',
     },
+    icon: {
+        margin: "-25px"
+    },
     btns: {
         position: "absolute",
         height: "100%",
@@ -38,10 +41,6 @@ const useStyles = makeStyles((theme) => ({
         float: "none"
     },
     
-    icon: {
-        margin: "-30px",
-
-    },
     
 }));
 
@@ -57,28 +56,25 @@ function Footer(props) {
                 <Toolbar className={classes.toolbar}>
                     <FooterButton
                         text="Friends"
-                        icon = {<Person className={classes.icon} />}
+                        icon = {<Person className={classes.icon}/>}
                         num={1}
                     />
-                    {/* <Button className={classes.btns} id="btn1">
-                        <Container  id="cont" >
-                            
-                            <Typography>
-                                hey
-                            </Typography>
-                        </Container>
-                    </Button> */}
-                    <Button className={classes.btns} id="btn2" >
-                        {/* Messages */}
-                        <Chat/>
-                            
-                    </Button>
+
+                    <FooterButton
+                        text="Messages"
+                        icon = {<Chat className={classes.icon}/>}
+                        num={2}
+                    />
+                    
                     
                     { 
                         (props.isPlus) ? null 
-                        :   <Button className={classes.btns} id="btn3"> Tasks</Button> 
-                        
-                        
+                        :   
+                        <FooterButton
+                            text="Tasks"
+                            icon = {<Assignment className={classes.icon}/>}
+                            num={3}
+                        />
                     }
                     
                     {
@@ -91,14 +87,16 @@ function Footer(props) {
                         : null
 
                     }
-                    <Button className={classes.btns} id="btn4">
-                        Settings
-                        
-                    </Button>
-                    <Button className={classes.btns} id="btn5">
-                        Profile
-                        
-                    </Button>
+                    <FooterButton
+                        text="Settings"
+                        icon = {<Settings className={classes.icon}/>}
+                        num={4}
+                    />
+                    <FooterButton
+                        text="Profile"
+                        icon = {<AccountCircle className={classes.icon}/>}
+                        num={5}
+                    />
                 
 
 
