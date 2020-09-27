@@ -5,6 +5,7 @@ import { Height } from '@material-ui/icons';
 import Friend from './Friend';
 import { positions } from '@material-ui/system';
 import $ from 'jquery'
+import { Autocomplete } from '@material-ui/lab';
 
 
 
@@ -39,8 +40,10 @@ const useStyles = makeStyles((theme) => ({
     },
     friends: { 
         marginTop: theme.spacing(2)
+    },
+    noResult: {
+        textAlign: "center"
     }
-
 }));
 
 function getRandomInt(max) {
@@ -64,6 +67,27 @@ function Friends(props){
 
     const [friendArray, setFriends] = useState();
 
+    const stringFormation = (str) => 
+    {
+        var formatted;
+        formatted = str.toLowerCase();
+        formatted = formatted.replaceAll(" ", "");
+
+        return formatted;
+    }
+
+    const matching = (str1, str2) =>
+    {
+        str1 = stringFormation(str1);
+        str2 = stringFormation(str2);
+
+        
+        
+        if(str2.includes(str1))
+            return true;
+        if(str1.includes(str2))
+            return true;
+    }
 
     const changed = (change) => 
     {
@@ -74,8 +98,14 @@ function Friends(props){
         for(let a = 0; a < 10; a++)
         {
             
-            if(val == "" || val==null || fBase[a].fullName.toLowerCase().includes(val))
+            if(val == "" || val==null || matching(fBase[a].fullName, val))
                 searchedFriends.push( <Friend key={a} src={fBase[a].ImageURL} header={fBase[a].commonFriends + " common friends"} name={fBase[a].fullName} /> );
+            
+            
+        }
+        if(searchedFriends.length == 0)
+        { 
+            searchedFriends.push( <Typography variant="h3" className={classes.noResult}> No results.</Typography>);
         }
         setFriends(searchedFriends);
     }

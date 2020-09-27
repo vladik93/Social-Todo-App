@@ -65,7 +65,7 @@ function FooterButton(props)
 
     return ( 
         /*onClick={btnClick(props.num)}*/
-        <Button onClick={() => btnClick(props.num)}  className={classes.btns} id={"btn" + props.num}>
+        <Button onClick={() => btnClick(props.num)}  className={classes.btns} id={"btn" + props.num} >
             <Container  id="cont" >
                     {props.icon}
                 <Typography>
