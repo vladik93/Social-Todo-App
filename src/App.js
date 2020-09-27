@@ -68,15 +68,16 @@ const getRandomName = () =>
   }
 
 
+  var friendBase = [];
 
-
-
+for(let a = 0; a < 10; a++)
+  friendBase.push(new FriendClass(a, getRandomName(), "https://sun6-14.userapi.com/7a7_Zwd42_g0aqUAI_QlnftjEHHVA5IR289znQ/eRJGn-p8Dng.jpg", getRandomInt(100)));
 
 function App() { 
 
-  var friendBase = [];
-  for(let a = 0; a < 10; a++)
-    friendBase.push(new FriendClass(a, getRandomName(), "https://sun6-14.userapi.com/7a7_Zwd42_g0aqUAI_QlnftjEHHVA5IR289znQ/eRJGn-p8Dng.jpg", getRandomInt(100)));
+  
+  
+  
 
   const [plus, setPlus ] = useState();
 

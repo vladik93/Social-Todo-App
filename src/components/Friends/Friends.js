@@ -64,23 +64,22 @@ function Friends(props){
 
     const [friendArray, setFriends] = useState();
 
+
     const changed = (change) => 
     {
-        
+        const fBase = props.friendBase;
         let val = change.target.value;
         val = val.toLowerCase();
-        console.log(val);
-        friends = [];
+        searchedFriends = [];
         for(let a = 0; a < 10; a++)
         {
             
-            if(val == "" || val==null || friendBase[a].fullName.toLowerCase().includes(val))
-                friends.push( <Friend key={a} src={friendBase[a].ImageURL} header={friendBase[a].commonFriends + " common friends"} name={friendBase[a].fullName} /> );
+            if(val == "" || val==null || fBase[a].fullName.toLowerCase().includes(val))
+                searchedFriends.push( <Friend key={a} src={fBase[a].ImageURL} header={fBase[a].commonFriends + " common friends"} name={fBase[a].fullName} /> );
         }
-        setFriends(friends);
+        setFriends(searchedFriends);
     }
 
-    
     
     
 
@@ -90,20 +89,42 @@ function Friends(props){
 
     useEffect(() => 
     {
-        friendBase = props.friendBase;
-        for(let a = 0; a < 10; a++)
+        var fbase = props.friendBase;
+        var temp = []
+        // friends = [];
+        if(friends.length != 10)
         {
-            friends.push( <Friend key={a} src={friendBase[a].ImageURL} header={ friendBase[a].commonFriends + " common friends"} name={friendBase[a].fullName} /> );
+            for(let a = 0; a < 10; a++)
+            {
+                friends.push( <Friend key={a} src={fbase[a].ImageURL} header={ fbase[a].commonFriends + " common friends"} name={fbase[a].fullName} /> );
+            }
+            setFriends(friends);
         }
-        setFriends(friends);
+        else
+        {
+            if(document.getElementById("search").value != "")
+                setFriends(searchedFriends);
+            else 
+                setFriends(friends);
+            return;
+        }
+            
+        // console.log("Is temp the same ? " + temp==friends);
+        // if(temp != friends)
+        // {
+        //     // 
+        //     friends = temp;
+        //     console.log("Hey");
+        // }
+            
+        // 
 
     });
     
 
     
     
-    console.log("HEY ");
-    console.log(props.friendBase);    
+  
 
     
 
@@ -115,7 +136,7 @@ function Friends(props){
             </Typography>
             <Card className={classes.holder}>
    
-                <TextField onChange={changed} className={classes.search}  label="Search" type="search" />
+                <TextField id="search" onChange={changed} className={classes.search}  label="Search" type="search" />
 
                 <Container className={classes.friends}>
                     {friendArray}
