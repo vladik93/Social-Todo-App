@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Paper, Typography, Card, TextField, Container, ButtonGroup} from '@material-ui/core';
+import { Button, Paper, Typography, Card, TextField, Container, ButtonGroup, Fab, ButtonBase} from '@material-ui/core';
 import { ExpandMore, Height } from '@material-ui/icons';
 import Friend from './Friend';
 import { positions } from '@material-ui/system';
@@ -47,8 +47,26 @@ const useStyles = makeStyles((theme) => ({
     requests: { 
         float: "right",
         margin: theme.spacing(1)
+    },
+    requestCount: {
+        position: "absolute",
+        zIndex: 1,
+        right: "-5px",
+        top: "-5px",
+        width: "20px",
+        height: "20px",
+        backgroundColor: "#f50057",
+        borderRadius: "50%",
+        textAlign: "center"
 
-    }   
+    },
+    num: {
+        position: "absolute",
+        color: "white",
+        top: "0%",
+        left: "15%",
+        fontSize: "12px"
+    }
 }));
 
 function getRandomInt(max) {
@@ -77,6 +95,8 @@ function Friends(props){
     const [friendArray, setFriends] = useState();
 
     const [requestButton, setButton] = useState(false);
+
+    const [friendRequests, setRequests] = useState(1);
 
     
 
@@ -173,7 +193,18 @@ function Friends(props){
                 {
                     (requestButton) ? 
                     <ButtonGroup variant="text" >
-                        <Button>Incoming</Button>
+                        <Button>
+                            {
+                                (friendRequests > 0) ?
+                                <div  className={classes.requestCount}>
+                                    <Typography className={classes.num}>
+                                        {"+" + friendRequests}
+                                    </Typography>
+                                </div>
+                                : null
+                            }
+                            Incoming
+                        </Button>
                         <Button>Outcoming</Button> 
                     </ButtonGroup>
                     :
