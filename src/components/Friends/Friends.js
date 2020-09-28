@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Paper, Typography, Card, TextField, Container} from '@material-ui/core';
-import { Height } from '@material-ui/icons';
+import { Button, Paper, Typography, Card, TextField, Container, ButtonGroup} from '@material-ui/core';
+import { ExpandMore, Height } from '@material-ui/icons';
 import Friend from './Friend';
 import { positions } from '@material-ui/system';
 import $ from 'jquery'
@@ -43,7 +43,12 @@ const useStyles = makeStyles((theme) => ({
     },
     noResult: {
         textAlign: "center"
-    }
+    },
+    requests: { 
+        float: "right",
+        margin: theme.spacing(1)
+
+    }   
 }));
 
 function getRandomInt(max) {
@@ -61,11 +66,19 @@ const getRandomName = () =>
         return name + " " + lName;
     }
 
-    var init = false;
+var init = false;
+
+
+
+
 
 function Friends(props){
 
     const [friendArray, setFriends] = useState();
+
+    const [requestButton, setButton] = useState(false);
+
+    
 
     const stringFormation = (str) => 
     {
@@ -138,15 +151,6 @@ function Friends(props){
             return;
         }
             
-        // console.log("Is temp the same ? " + temp==friends);
-        // if(temp != friends)
-        // {
-        //     // 
-        //     friends = temp;
-        //     console.log("Hey");
-        // }
-            
-        // 
 
     });
     
@@ -163,7 +167,23 @@ function Friends(props){
             <Typography variant="h3">
                 Friends ({+ props.friendAmount }) : 
             </Typography>
-            <Card className={classes.holder}>
+            <Card className={classes.holder} >
+
+                <div className={classes.requests} >
+                {
+                    (requestButton) ? 
+                    <ButtonGroup variant="text" >
+                        <Button>Incoming</Button>
+                        <Button>Outcoming</Button> 
+                    </ButtonGroup>
+                    :
+                    <Button variant="outlined" onClick={() => setButton(true)} color="primary" endIcon={<ExpandMore/>} >
+                        
+                        Requests
+                    </Button>
+                }
+                </div>
+                
    
                 <TextField id="search" onChange={changed} className={classes.search}  label="Search" type="search" />
 
