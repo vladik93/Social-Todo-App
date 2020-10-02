@@ -5,6 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import $ from 'jquery';
+import { useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
         // boxShadow: theme.shadows[19],
         textShadow: '1px 1px 1px #000',
         padding: theme.spacing(1),
+    },
+    register: {
+        cursor: "pointer",
+        fontWeight: "bold",
+        fontSize: "20px"
     }
 }));
 
@@ -38,26 +45,50 @@ const useStyles = makeStyles((theme) => ({
 
 function Login(props) {
     const classes = useStyles();
+    const history = useHistory();
 
     useEffect(() => {
         props.plusFunc(false);
 
     });
+
+    const loginClick = () => 
+    {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        console.log("Clicked with " + username + ", and " + password);
+        $.get(("http://localhost:6548?username=" + username + "&password=" + password) , (data) => 
+        {
+                
+            if(data.logined)
+            {
+                console.log(data);
+                let profile = data.res[0];
+                alert("Logined: name: " + profile.name + " " + profile.lastname + ", age: " + profile.age);
+
+            }
+            else
+                alert("No user");
+            
+        });
+    };
+
+
     return (
         <div className={classes.root}>
             <form noValidate>
                 <Grid container spacing={0}>
                     <Grid item xs={12}>
-                        <TextField variant="outlined" margin="normal" placeholder="Email" fullWidth  />
+                        <TextField id="username" variant="outlined" margin="normal" placeholder="Email" fullWidth  />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField variant="outlined" margin="normal" placeholder="Password" fullWidth />
+                        <TextField id="password" variant="outlined" margin="normal" placeholder="Password" fullWidth />
                     </Grid>
                     <Grid item xs={6}>
-                        <Button variant="contained" className={classes.button}>LOGIN</Button>
+                        <Button onClick={loginClick} variant="contained" className={classes.button}>LOGIN</Button>
                     </Grid>
                     <Grid item xs={6}>
-                        <Link>
+                        <Link onClick={history.push("/register")} className={classes.register}>
                             Not Registered?
                         </Link>
                     </Grid>

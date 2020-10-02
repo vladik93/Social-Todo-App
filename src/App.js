@@ -20,6 +20,9 @@ import { AppBar } from '@material-ui/core';
 import { DesktopWindowsRounded } from '@material-ui/icons';
 import Friends from './components/Friends/Friends';
 import TasksHolder from './components/Tasks/TasksHolder';
+import $ from "jquery";
+import Register from './components/Register/Register';
+
 
 
 class FriendClass 
@@ -256,6 +259,9 @@ function App() {
             </Route>
             <Route exact path="/friends">
                 <Friends friendBase={friendBase} friendAmount={10}/>
+            </Route>
+            <Route exact path="/register">
+                <Register/>
             </Route>
           </Switch>
         </Container>
