@@ -1,4 +1,4 @@
-import { Button, Card, Container, FormControl, FormHelperText, Grid, Input, InputLabel, makeStyles, TextField } from '@material-ui/core';
+import { Button, Card, Container, FormControl, FormHelperText, Grid, Input, InputLabel, makeStyles, TextField, Typography } from '@material-ui/core';
 import React, {useEffect, useState} from 'react';
 import $ from 'jquery';
 
@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
     gridContainer: {
         marginBottom: theme.spacing(1),
         marginTop: theme.spacing(1)
+    }, 
+    title: {
+        marginBottom: theme.spacing(2)
     }
     
 }));
@@ -66,7 +69,7 @@ function Register(props)
 
     }
     
-    const nameValidation = async (args) => {
+    const nameValidation = async () => {
         let field = $("#nameinput");
         let name = field.val();
         if(name.length < 3)
@@ -88,9 +91,29 @@ function Register(props)
             return false;
         }
 
-        
+        $.get("http://localhost:6548/validation?user=" + name, (data) =>
+        {
+            console.log("Data is: " + data);
+
+            if(data.exists)
+            {
+                console.log("Username exists");
+                setusernameErr("This username is taken");
+                field.trigger("focus");
+                return false;
+            }
+            else
+            {
+                console.log("Username doesn't exist");
+                setusernameErr(false);
+                return true;
+                
+            }
+            
+        });
+
         setusernameErr(false);
-        return true;
+        // return true;
     }
 
     const passwordValidation = () => {
@@ -114,8 +137,12 @@ function Register(props)
     const classes = useStyles();
     return(
         <Card>
+            
             <form id="form" >
                 <Container className={classes.gridContainer}>
+                    <Typography className={classes.title} variant="h4">
+                        Registration
+                    </Typography>
                     <Grid  container spacing={2}>
                         
                         <Grid item xs={12} >       
