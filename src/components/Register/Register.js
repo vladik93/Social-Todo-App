@@ -16,19 +16,43 @@ const useStyles = makeStyles((theme) => ({
     
 }));
 
+function letterEnglish(letter)
+{
+    let code = letter.charCodeAt(0);
+    if(code >= 'a'.charCodeAt(0) && code <= 'z'.charCodeAt(0))
+        return true;
+    if(code >= 'A'.charCodeAt(0) && code <= 'Z'.charCodeAt(0))
+        return true;
+    if(code >= '0'.charCodeAt(0) && code <= '9'.charCodeAt(0))
+        return true;
+
+    return false;
+}
+
+function isEnglish(name)
+{
+    for(let i = 0; i < name.length; i++)
+    {
+        if(!letterEnglish(name.charAt(i)))
+            return false;
+    }
+    return true;
+}
+
 
 
 function Register(props)
 {
 
-    const [nameError, setNameError] = useState(false);
+    const [usernameErr, setusernameErr] = useState(false);
 
     const registerSubmit = () => 
     {
         console.log("Register submit button");
         if(allValidation())
         {
-            // const ser = $("#form").serialize();
+            const ser = $("#form").serialize();
+            console.log("Serialization: " + ser);
             // $.get("http://localhost:6548/?" + ser, (data) => {
             //     console.log("data");
             // });
@@ -38,33 +62,39 @@ function Register(props)
 
     const emailValidation = () => {
 
-        return false;
+        return true;
 
     }
     
-    const nameValidation = (args) => {
+    const nameValidation = async (args) => {
         let field = $("#nameinput");
         let name = field.val();
-        if(name.length < 5)
+        if(name.length < 3)
         {
-            setNameError("The name should be at least 5 letters long");
+            setusernameErr("The username should be at least 3 letters long");
             field.trigger("focus");
             return false
         }
-        else if(name.length > 15)
+        if(name.includes(" ") || !isEnglish(name))
         {
-            setNameError("The username is too long");
-            field.focus();
+            setusernameErr("Please use only English letters and numbers");
+            field.trigger("focus");
+            return false
+        }
+        if(name.length > 15)
+        {
+            setusernameErr("The username is too long");
+            field.trigger("focus");
             return false;
-            
         }
 
-        setNameError(false);
+        
+        setusernameErr(false);
         return true;
     }
 
     const passwordValidation = () => {
-        return false;
+        return true;
 
     };
 
@@ -78,7 +108,7 @@ function Register(props)
         if(!passwordValidation())
             flag = false;
         
-        return false;
+        return flag;
     }
 
     const classes = useStyles();
@@ -91,13 +121,14 @@ function Register(props)
                         <Grid item xs={12} >       
     
                             <TextField
+                                name="username"
                                 className={classes.field}
                                 variant="outlined"
                                 id="nameinput"
                                 placeholder="Username"
                                 onChange={nameValidation}
-                                helperText={nameError}
-                                error={nameError}
+                                helperText={usernameErr}
+                                error={usernameErr}
                                 fullWidth
                             />
                         </Grid>
