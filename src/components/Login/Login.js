@@ -72,6 +72,11 @@ function Login(props) {
             
         });
     };
+    
+    const registerClick = () =>
+    {
+        history.push("/register");
+    }
 
 
     return (
@@ -88,7 +93,7 @@ function Login(props) {
                         <Button onClick={loginClick} variant="contained" className={classes.button}>LOGIN</Button>
                     </Grid>
                     <Grid item xs={6}>
-                        <Link onClick={history.push("/register")} className={classes.register}>
+                        <Link onClick={registerClick} className={classes.register}>
                             Not Registered?
                         </Link>
                     </Grid>

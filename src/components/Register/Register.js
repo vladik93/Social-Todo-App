@@ -1,4 +1,4 @@
-import { Button, Card, Container, FormControl, FormHelperText, Grid, Input, InputLabel, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Button, Card, Container, FormControl, FormHelperText, Grid, Input, InputLabel, Link, makeStyles, TextField, Typography } from '@material-ui/core';
 import React, {useEffect, useState} from 'react';
 import $ from 'jquery';
 
@@ -48,6 +48,8 @@ function Register(props)
 {
 
     const [usernameErr, setusernameErr] = useState(false);
+    const [passwordError, setPasswordErr] = useState(false);
+    const [emError, setEMError] = useState(false);
 
     const registerSubmit = () => 
     {
@@ -63,9 +65,34 @@ function Register(props)
         
     }
 
-    const emailValidation = () => {
+    const emailValidation = async () => {
 
-        return true;
+        let field = $("#mailinput");
+        let mail = field.val();
+        console.log("validation of " + mail)
+
+        $.get("http://localhost:6548/validation?mail=" + mail, (data) =>
+        {
+            console.log("Data is: " + data);
+
+            if(data.exists)
+            {
+                console.log("Email exists");
+                setEMError(<div><Typography>This email is already taken <Link> Forgotten password ?</Link></Typography></div>  );
+                field.trigger("focus");
+                return false;
+            }
+            else
+            {
+                console.log("Username doesn't exist");
+                setEMError(false);
+                return true;
+                
+            }
+            
+        });
+
+        setEMError(false);
 
     }
     
@@ -117,6 +144,30 @@ function Register(props)
     }
 
     const passwordValidation = () => {
+
+        var field = $("#passinput");
+        var pass = field.val();
+        console.log("Password is:" + pass)
+        if(pass.length < 5)
+        {
+            setPasswordErr("Password should be at least 5 characters long");
+            field.trigger("focus");
+            return false;
+        }
+        if(pass.length > 20)
+        {
+            setPasswordErr("Password should be no more than 20 characters long");
+            field.trigger("focus");
+            return false;
+        }
+        else if(!(pass.match(/[0-9]/) && (pass.match(/[a-z]/) && (pass.match(/[A-Z]/)))))
+        {
+            setPasswordErr("Password should contain at least one number, a letter and a capital letter");
+            field.trigger("focus");
+            return false;
+        }
+        
+        setPasswordErr(false);
         return true;
 
     };
@@ -124,12 +175,13 @@ function Register(props)
     const allValidation = () => {
         let flag = true;
         if(!nameValidation())
-            flag = false;
+            return false;
+        if(!passwordValidation())
+            return false;
             
         if(!emailValidation())
             flag = false;
-        if(!passwordValidation())
-            flag = false;
+        
         
         return flag;
     }
@@ -156,14 +208,37 @@ function Register(props)
                                 onChange={nameValidation}
                                 helperText={usernameErr}
                                 error={usernameErr}
+                                required
                                 fullWidth
                             />
                         </Grid>
                         <Grid item xs={12} >
-                            <TextField className={classes.field} name="password" id="password" variant="outlined" margin="normal" placeholder="Password" fullWidth required />
+                            <TextField
+                                    name="password"
+                                    className={classes.field}
+                                    variant="outlined"
+                                    id="passinput"
+                                    placeholder="Password"
+                                    onChange={passwordValidation}
+                                    helperText={passwordError}
+                                    error={passwordError}
+                                    required
+                                    fullWidth
+                                />
                         </Grid>
                         <Grid item xs={12} >
-                            <TextField className={classes.field} name="email" id="email" variant="outlined" margin="normal" placeholder="E-mail" fullWidth required />
+                        <TextField
+                                    name="email"
+                                    className={classes.field}
+                                    variant="outlined"
+                                    id="mailinput"
+                                    placeholder="E-mail"
+                                    onChange={emailValidation}
+                                    helperText={emError}
+                                    error={emError}
+                                    required
+                                    fullWidth
+                                />
                         </Grid>
                         <Grid  item xs={6} >
                             <TextField className={classes.field} name="name" id="name" variant="outlined" margin="normal" placeholder="Personal Name" fullWidth />

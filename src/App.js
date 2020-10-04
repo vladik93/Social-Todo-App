@@ -73,7 +73,7 @@ const getRandomName = () =>
 var friendBase = [];
 
 for(let a = 0; a < 10; a++)
-  friendBase.push(new FriendClass(a, getRandomName(), "https://sun6-14.userapi.com/7a7_Zwd42_g0aqUAI_QlnftjEHHVA5IR289znQ/eRJGn-p8Dng.jpg", getRandomInt(100)));
+  friendBase.push(new FriendClass(a, getRandomName(), "https://sun9-55.userapi.com/QM742luqQ2U7zaIOZNuKjS58ImfltwhaPqRPng/M9zq2f3MX4U.jpg", getRandomInt(100)));
 
 function App() { 
 
@@ -202,6 +202,9 @@ function App() {
         {/* <div className={classes.offset} /> */}
         <Container maxWidth="sm" className={classes.container}>
           <Switch>
+            <Route exact path="/login">
+              <Login plusFunc={setPlus} />
+            </Route>
             <Route exact path="/">
               <Login plusFunc={setPlus} />
             </Route>
