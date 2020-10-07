@@ -19,6 +19,13 @@ const useStyles = makeStyles((theme) => ({
     
 }));
 
+/**
+ * Checks if a character is English, or a number
+ * 
+ * @param {char} letter - character to check
+ * @private
+ * @returns true if it is
+ */
 function letterEnglish(letter)
 {
     let code = letter.charCodeAt(0);
@@ -32,6 +39,13 @@ function letterEnglish(letter)
     return false;
 }
 
+/**
+ * The function check if the name entirely consists of
+ * English letters (capital and not), and numbers.
+ * Spaces are not allowed
+ * @param {string} name the name you want to check
+ * @returns true if the name consists only from characters listed above
+ */
 function isEnglish(name)
 {
     for(let i = 0; i < name.length; i++)
@@ -70,6 +84,7 @@ function Register(props)
         let field = $("#mailinput");
         let mail = field.val();
         console.log("validation of " + mail)
+        
 
         $.get("http://localhost:6548/validation?mail=" + mail, (data) =>
         {
@@ -111,7 +126,7 @@ function Register(props)
             field.trigger("focus");
             return false
         }
-        if(name.length > 15)
+        if(name.length > 20)
         {
             setusernameErr("The username is too long");
             field.trigger("focus");

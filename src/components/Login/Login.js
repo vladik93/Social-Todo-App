@@ -57,7 +57,7 @@ function Login(props) {
         var username = $("#username").val();
         var password = $("#password").val();
         console.log("Clicked with " + username + ", and " + password);
-        $.get(("http://localhost:6548?username=" + username + "&password=" + password) , (data) => 
+        $.get(("http://localhost:6548/login?username=" + username + "&password=" + password) , (data) => 
         {
                 
             if(data.logined)
