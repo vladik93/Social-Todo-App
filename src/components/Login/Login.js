@@ -40,7 +40,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-
+function getAge(d1){
+    var d2 = new Date();
+    var diff = d2.getTime() - d1.getTime();
+    return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+}
 
 
 function Login(props) {
@@ -64,7 +68,9 @@ function Login(props) {
             {
                 console.log(data);
                 let profile = data.res[0];
-                alert("Logined: name: " + profile.name + " " + profile.lastname + ", age: " + profile.age);
+                profile.birthdate = new Date(profile.birthdate);
+
+                alert("Logined: name: " + profile.name + " " + profile.lastname + ", age: " + getAge(profile.birthdate));
 
             }
             else
