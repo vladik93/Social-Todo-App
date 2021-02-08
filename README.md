@@ -1,8 +1,4 @@
 ## Social network centered around tasks.
-Mean work distribution:<br/>
-### Vladi: 98%<br/>
-### Danek: 1% <br/>
-### Aliens: 1%
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
